@@ -1,0 +1,45 @@
+openapi: 3.0.2
+info:
+  title: Academic Support API
+  version: 1.0.0
+  description: This is the Academic Support API
+paths:
+  /students:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student'
+        description: The affiliate to create
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/student'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+components:
+  schemas:
+    student:
+      type: object
+    error:
+      type: object
+servers:
+  - url: http://localhost:8080
+    description: Local server
