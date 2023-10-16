@@ -8,8 +8,10 @@ function LogIn() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  //const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const onRegister = () => {
+    navigate("/register");
+  }
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
@@ -36,7 +38,7 @@ function LogIn() {
           LOG IN
         </button>
         <p className="login__register">
-          Don't have an account yet? <span>register</span>
+          Don't have an account yet? <span onClick={onRegister}>register</span>
         </p>
       </form>
     </section>

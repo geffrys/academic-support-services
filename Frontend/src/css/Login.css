@@ -60,6 +60,7 @@
 }
 
 .submit_button {
+  cursor: pointer;
   margin-top: 2.2rem;
   width: 14rem;
   height: 4.4rem;
@@ -75,4 +76,5 @@
 
 .login__register span {
   color: var(--primary-color);
+  cursor: pointer;
 }
