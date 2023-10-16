@@ -1,7 +1,15 @@
-import "./App.css";
+import Footer from "./components/Footer";
+import RoutesPG from './routes/RoutesPG'
 
 function App() {
-  return <></>;
+  return (
+    <main>
+      <section className="each_page">
+        <RoutesPG />
+      </section>
+      <Footer />
+    </main>
+  );
 }
 
 export default App;

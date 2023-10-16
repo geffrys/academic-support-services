@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+.each_page {
+  flex-grow: 1;
+  background-color: var(--background-color);
+}
+
+:root {
+  --primary-color: #67f494;
+  --secondary-color: #5cc59e;
+  --third-color: #4c5267;
+  --background-color: #363a51;
+  --background-color-dark: #1a2b42;
+}
