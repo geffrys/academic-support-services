@@ -1,0 +1,110 @@
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 49px);
+}
+
+.register__form {
+  padding: 0 8.1rem 2.8rem 8.1rem;
+  background-color: var(--background-color-dark);
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  color: white;
+}
+.register h1 {
+  font-size: 2rem;
+  margin-top: -1rem;
+  margin-bottom: 3.5rem;
+}
+
+.register__personal, .register__user h1
+{
+    text-align: center;
+}
+
+.error {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.register__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.register__form .register__input{
+    width: 100%;
+}
+
+.register__form input {
+  color: white;
+  text-align: center;
+  width: calc(50% - 1rem);
+  margin-bottom: 2.2rem;
+  height: 4.3rem;
+  border-radius: 2.2rem;
+  background: var(--background-color);
+  border: none;
+}
+
+.register__form select {
+  color: white;
+  text-align: center;
+  width: calc(50% - 1rem);
+  margin-bottom: 2.2rem;
+  height: 4.3rem;
+  border-radius: 2.2rem;
+  background: var(--background-color);
+  border: none;
+}
+
+.register__form input::placeholder {
+  color: white;
+}
+
+.submit_buttn{
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-radius: 2rem;
+    opacity: 0.5;
+}
+.register__arrows{
+    display: flex;
+    gap: 8.6rem;
+}
+
+.submit_buttn--active{
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.dots{
+    margin-top: 1.6rem;
+    display: flex;
+    gap: 4.6rem;
+}
+
+.dot--active{
+    border-radius: 2rem;
+    padding: 0.5rem;
+    background-color: var(--third-color);
+}
+
+.dot{
+    border-radius: 2rem;
+    padding: 0.5rem;
+    background-color: var(--background-color);
+}

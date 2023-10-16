@@ -11,7 +11,10 @@ function LogIn() {
   const navigate = useNavigate();
   const onRegister = () => {
     navigate("/register");
-  }
+  };
+  const onBar = () => {
+    navigate("/register");
+  };
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
@@ -21,7 +24,7 @@ function LogIn() {
       <form onSubmit={onSubmit} className="login__form">
         <section className="login__bars">
           <div className="login__bar--modifier"></div>
-          <div className="login__bar"></div>
+          <div className="login__bar" onClick={onBar}></div>
         </section>
 
         <p>User Name</p>
