@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   height: calc(100vh - 49px);
+  transform: scale(-1, 1);
 }
 
 .register__form {
@@ -16,15 +17,30 @@
   border-radius: 10px;
   color: white;
 }
+
+.register__errors{
+  display: none;
+}
+
+.register__active{
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+.register__hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
 .register h1 {
   font-size: 2rem;
   margin-top: -1rem;
   margin-bottom: 3.5rem;
 }
 
-.register__personal, .register__user h1
-{
-    text-align: center;
+.register__personal,
+.register__user h1 {
+  text-align: center;
 }
 
 .error {
@@ -41,15 +57,15 @@
   justify-content: space-between;
 }
 
-.register__form .register__input{
-    width: 100%;
+.register__form .register__input {
+  width: 100%;
 }
 
 .register__form input {
   color: white;
   text-align: center;
   width: calc(50% - 1rem);
-  margin-bottom: 2.2rem;
+  margin-bottom: 4.4rem;
   height: 4.3rem;
   border-radius: 2.2rem;
   background: var(--background-color);
@@ -71,40 +87,41 @@
   color: white;
 }
 
-.submit_buttn{
-    background-color: transparent;
-    border: 1px solid white;
-    padding: 1rem 1rem 0.5rem 1rem;
-    border-radius: 2rem;
-    opacity: 0.5;
+.submit_buttn {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-radius: 2rem;
+  opacity: 0.5;
 }
-.register__arrows{
-    display: flex;
-    gap: 8.6rem;
-}
-
-.submit_buttn--active{
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
-    padding: 1rem 1rem 0.5rem 1rem;
-    border-radius: 2rem;
-    cursor: pointer;
+.register__arrows {
+  margin-top: -2.2rem;
+  display: flex;
+  gap: 8.6rem;
 }
 
-.dots{
-    margin-top: 1.6rem;
-    display: flex;
-    gap: 4.6rem;
+.submit_buttn--active {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  padding: 1rem 1rem 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
 }
 
-.dot--active{
-    border-radius: 2rem;
-    padding: 0.5rem;
-    background-color: var(--third-color);
+.dots {
+  margin-top: 1.6rem;
+  display: flex;
+  gap: 4.6rem;
 }
 
-.dot{
-    border-radius: 2rem;
-    padding: 0.5rem;
-    background-color: var(--background-color);
+.dot--active {
+  border-radius: 2rem;
+  padding: 0.5rem;
+  background-color: var(--third-color);
+}
+
+.dot {
+  border-radius: 2rem;
+  padding: 0.5rem;
+  background-color: var(--background-color);
 }

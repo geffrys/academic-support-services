@@ -21,6 +21,16 @@ main {
   background-color: var(--background-color);
 }
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
 :root {
   --primary-color: #67f494;
   --secondary-color: #5cc59e;
