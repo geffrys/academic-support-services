@@ -18,11 +18,11 @@
   color: white;
 }
 
-.register__errors{
+.register__errors {
   display: none;
 }
 
-.register__active{
+.register__active {
   transition: all 0.5s ease;
   opacity: 1;
 }
@@ -38,8 +38,9 @@
   margin-bottom: 3.5rem;
 }
 
-.register__personal,
-.register__user h1 {
+.register__personal h1,
+.register__user h1,
+.register__interest h1 {
   text-align: center;
 }
 
@@ -59,6 +60,10 @@
 
 .register__form .register__input {
   width: 100%;
+}
+
+.register__select{
+  margin-bottom: 4.4rem;
 }
 
 .register__form input {

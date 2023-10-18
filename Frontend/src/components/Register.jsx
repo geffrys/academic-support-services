@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import "../css/Register.css";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Multiselect } from "multiselect-react-dropdown";
 
 const Register = ({ showLoginForm }) => {
   const [state, setState] = useState(1);
+  const [countries, setCountries] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([]);
   const {
     register,
     handleSubmit,
@@ -14,6 +17,14 @@ const Register = ({ showLoginForm }) => {
 
   const onBar = () => {
     showLoginForm();
+  };
+
+  const handleSelect = (selectedList, selectedItem) => {
+    setSelectedValues(selectedList);
+  };
+
+  const handleRemove = (selectedList, removedItem) => {
+    setSelectedValues(selectedList);
   };
 
   const commonToastStyle = {
@@ -38,29 +49,44 @@ const Register = ({ showLoginForm }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/all");
+        const data = await response.json();
+        setCountries(data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
   const onSubmit = handleSubmit((data) => {
     let isValid = true;
-  
+
     const fieldsToValidate = [
-      'user_name',
-      'user_last_name',
-      'user_birth',
-      'user_id_type',
-      'user_id',
-      'user_email',
-      'user_nametag',
-      'user_password',
-      'user_password_confirm'
+      "user_name",
+      "user_last_name",
+      "user_birth",
+      "user_id_type",
+      "user_id",
+      "user_email",
+      "user_nametag",
+      "user_password",
+      "user_password_confirm",
+      "user_country",
+      "user_phone",
     ];
-  
     const formatFieldName = (field) => {
       return field
-        .replace('user_', '') // Remueve el prefijo 'user_'
-        .split('_') // Divide el nombre por guiones bajos
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitaliza cada palabra
-        .join(' '); // Une las palabras con un espacio
+        .replace("user_", "")
+        .split("_")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitaliza cada palabra
+        .join(" ");
     };
-  
+
     for (const field of fieldsToValidate) {
       if (!data[field]) {
         toast(`${formatFieldName(field)} is required`, {
@@ -69,11 +95,15 @@ const Register = ({ showLoginForm }) => {
         isValid = false;
       }
     }
-  
+
+    data.user_selections = selectedValues;
+
     if (isValid) {
       console.log(data);
     }
   });
+
+  const data = countries.map((country) => country.name.common);
 
   return (
     <section className="register">
@@ -135,7 +165,7 @@ const Register = ({ showLoginForm }) => {
         </section>
 
         <section
-          className={state == 1 ? "register__hidden" : "register__active"}
+          className={state == 2 ? "register__active" : "register__hidden"}
         >
           {state == 2 && (
             <section className="register__user">
@@ -147,13 +177,24 @@ const Register = ({ showLoginForm }) => {
                 placeholder="User Email"
               />
 
-              <input
-                className="register__input"
-                type="text"
-                {...register("user_nametag", { required: true })}
-                placeholder="User Name"
-              />
               <section className="register__inputs">
+                <select
+                  type="text"
+                  {...register("user_type", { required: true })}
+                  defaultValue=""
+                >
+                  <option value="" disabled hidden>
+                    User Type
+                  </option>
+                  <option value="1">Student</option>
+                  <option value="2">Teacher</option>
+                </select>
+
+                <input
+                  type="text"
+                  {...register("user_nametag", { required: true })}
+                  placeholder="User Name"
+                />
                 <input
                   type="password"
                   {...register("user_password", { required: true })}
@@ -169,10 +210,66 @@ const Register = ({ showLoginForm }) => {
             </section>
           )}
         </section>
+
         <section
-          className={state == 3 ? "register__active" : "register_hidden"}
+          className={state == 3 ? "register__active" : "register__hidden"}
         >
-          {state == 3 && <button type="submit">aa</button>}
+          {state == 3 && (
+            <section className="register__interest">
+              <h1>Interest Information</h1>
+              <input
+                list="countries"
+                placeholder="Country"
+                className="register__input"
+                {...register("user_country", { required: true })}
+              />
+              <datalist id="countries">
+                {countries.map((country) => (
+                  <option key={country.cca2} value={country.name.common} />
+                ))}
+              </datalist>
+
+              <input
+                className="register__input"
+                type="tel"
+                {...register("user_phone", { required: true })}
+                placeholder="Phone Number"
+              />
+              <div className="register__select">
+                <Multiselect
+                  isObject={false}
+                  options={data} // Asegúrate de que data contenga las opciones
+                  selectedValues={selectedValues}
+                  onSelect={handleSelect}
+                  onRemove={handleRemove}
+                  displayValue="Country"
+                  placeholder="Select your interests"
+                  hidePlaceholder={true}
+                  style={{
+                    multiselectContainer: {
+                      background: "var(--background-color)",
+                      borderRadius: "2.2rem",
+                    },
+                    searchBox: {
+                      textAlign: "center",
+                      border: "none",
+                      fontSize: "1.6rem",
+                    },
+                    inputField: {
+                      margin: "0.1px",
+                    },
+                    chips: {
+                      background: "var(--background-color-dark)",
+                    },
+                    option: {
+                      color: "white",
+                      background: "var(--background-color-dark)",
+                    },
+                  }}
+                />
+              </div>
+            </section>
+          )}
         </section>
         <section className="register__arrows">
           <div
@@ -192,6 +289,7 @@ const Register = ({ showLoginForm }) => {
             <FaArrowRight />
           </div>
         </section>
+      
         <section className="dots">
           <div className={state == 1 ? "dot--active" : "dot"}></div>
           <div className={state == 2 ? "dot--active" : "dot"}></div>
