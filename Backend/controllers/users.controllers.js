@@ -163,3 +163,42 @@ export const verifyToken = async (req, res) => {
     });
   });
 };
+
+export const edit = async (req, res) => {
+  try {
+
+    const{
+      user_id
+    }= req.params 
+
+    const {
+      user_name,
+      user_middle_name,
+      user_last_name,
+      user_mail,
+      user_phone,
+      user_username,
+      user_country,
+      user_interests,
+    } = req.body;
+
+
+
+    const [results] = await pool.query(
+      'UPDATE users SET user_name = ?, user_middle_name = ?, user_last_name = ?, user_mail = ?, user_phone = ?, user_username = ?, user_country = ?, user_interests = ? WHERE user_id = ?',
+      [user_name,
+      user_middle_name,
+      user_last_name,
+      user_mail,
+      user_phone,
+      user_username,
+      user_country,
+      user_interests,
+      user_id]
+    );
+
+    res.status(200).send({ status: 'success', message: 'Usuario editado' });
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
