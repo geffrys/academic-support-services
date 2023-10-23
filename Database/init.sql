@@ -119,9 +119,7 @@ INSERT INTO session_type(session_type_name) VALUES ('practice');
 INSERT INTO session_type(session_type_name) VALUES ('lab');
 
 -- avoid user table
-INSERT INTO users(user_name, user_middle_name, user_last_name, user_mail, user_phone, user_password, user_username, user_type_id) VALUES ('admin', 'admin', 'admin', 'admin@admin.com', '123456789', 'admin', 'admin', 1);
-INSERT INTO users(user_name, user_middle_name, user_last_name, user_mail, user_phone, user_password, user_username, user_type_id) VALUES ('teacher', 'teacher', 'teacher', 'teacher@teacher.com', '123456789', 'teacher', 'teacher', 2);
-INSERT INTO users(user_name, user_middle_name, user_last_name, user_mail, user_phone, user_password, user_username, user_type_id) VALUES ('student', 'student', 'student', 'student@student.com', '123456789', 'student', 'student', 3);
+INSERT INTO `users` VALUES (1,'Samuel','Ignacio','Arango','superajke@gmail.com','3043346953','$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm','Superajke4K',3,'1000413879','Colombia','2003-06-21 19:00:00','French Polynesia;Saint Martin;Venezuela','2023-10-20 22:54:45','2023-10-22 18:20:45',1,1,NULL);
 
 INSERT INTO teachers(teacher_id, teacher_entry_date, teacher_exit_date) VALUES (2, '1900-01-01 00:08:00', '1900-01-01 00:17:00');
 

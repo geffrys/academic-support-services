@@ -197,7 +197,7 @@ export const edit = async (req, res) => {
       user_id]
     );
 
-    res.status(200).send({ status: 'success', message: 'Usuario editado' });
+    res.status(200).send({ message: "User updated successfully"});
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }
