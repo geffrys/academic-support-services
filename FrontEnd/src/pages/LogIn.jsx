@@ -40,8 +40,8 @@ function LogIn() {
 
   const onSubmit = handleSubmit((data) => {
     let key = true;
-    if (!data.user_mail) {
-      toast("User Email is required", {
+    if (!data.user_password) {
+      toast("Password is required", {
         style: {
           borderRadius: "10px",
           background: "var(--background-color-dark)",
@@ -50,8 +50,8 @@ function LogIn() {
       });
       key = false;
     }
-    if (!data.user_password) {
-      toast("Password is required", {
+    if (!data.user_mail) {
+      toast("User Email is required", {
         style: {
           borderRadius: "10px",
           background: "var(--background-color-dark)",

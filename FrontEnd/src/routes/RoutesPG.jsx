@@ -10,7 +10,8 @@ function RoutesPG() {
     <Routes>
       <Route path="/" element={!isAuthenticated && <LogIn />} />
       <Route path="*" element={isAuthenticated && <NotFound />} />
-      <Route path="/recover" element={!isAuthenticated && <Recover />}></Route>
+      <Route path="/recover" element={!isAuthenticated && <Recover />}/>
+      <Route path="/recover/:user_mail" element={!isAuthenticated && <Recover />}/>
     </Routes>
   );
 }
