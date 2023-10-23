@@ -1,0 +1,23 @@
+.notfound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .notfound__title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .notfound__p{
+    margin-top: 2rem;
+    color: white;
+  }
+
+  .notfound__span{
+    cursor: pointer;
+    color: var(--primary-color);
+  }

@@ -1,0 +1,94 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 49px);
+  transform: scale(-1, 1);
+}
+
+.login__form {
+  width: 46rem;
+  padding: 0 8.1rem 4.7rem 8.1rem;
+  background-color: var(--background-color-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  color: white;
+  transition: transform 0.5s;
+}
+
+.active{
+  transition: all 0.5s ease;
+  transform: rotateY(180deg);
+  opacity: 1;
+}
+
+.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.error {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.login__bars {
+  display: flex;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  margin-bottom: 3.1rem;
+  gap: 3.8rem;
+}
+
+.login__bar {
+  cursor: pointer;
+  width: 7rem;
+  height: 0.8rem;
+  background-color: var(--background-color);
+  border-radius: 1rem;
+}
+
+.login__bar--modifier {
+  width: 7rem;
+  height: 0.8rem;
+  background-color: #4c5267;
+  border-radius: 1rem;
+}
+
+.login__form input {
+  color: white;
+  padding-left: 1rem;
+  margin-top: 1.4rem;
+  margin-bottom: 2.2rem;
+  width: 29.8rem;
+  height: 5rem;
+  border-radius: 2.2rem;
+  background: var(--background-color);
+  border: none;
+}
+
+.submit_button {
+  cursor: pointer;
+  margin-top: 2.2rem;
+  width: 14rem;
+  height: 4.4rem;
+  border-radius: 2.2rem;
+  border: 1px solid #5cc59e;
+  background: #67f494;
+  font-weight: 600;
+}
+
+.login__register {
+  margin-top: 2.2rem;
+}
+
+.login__register span {
+  color: var(--primary-color);
+  cursor: pointer;
+}
