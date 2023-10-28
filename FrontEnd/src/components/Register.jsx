@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useAuth } from "../context/AuthContext";
+import { useTopics } from "../context/TopicsContext";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
+  const { topics, getTopics } = useTopics();
   const [state, setState] = useState(1);
   const [countries, setCountries] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
@@ -145,7 +147,12 @@ const Register = ({ showLoginForm }) => {
     }
   });
 
+  useEffect(() => {
+    getTopics();
+  }, []);
+
   const data = countries.map((country) => country.name.common);
+  const topicData = topics.map((topic) => topic.topic_name);
 
   return (
     <section className="register">
@@ -189,9 +196,10 @@ const Register = ({ showLoginForm }) => {
                 <select
                   type="text"
                   {...register("user_id_type_id", { required: true })}
+                  defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    ID Type
+                    Id Type
                   </option>
                   <option value="1">siu1</option>
                   <option value="2">siu2</option>
@@ -264,6 +272,7 @@ const Register = ({ showLoginForm }) => {
               <h1>Interest Information</h1>
               <div className="register__select">
                 <Multiselect
+                  id="multiselectCountry"
                   isObject={false}
                   options={data}
                   selectedValues={selectedValue}
@@ -303,12 +312,13 @@ const Register = ({ showLoginForm }) => {
 
               <div className="register__select">
                 <Multiselect
+                  id="multiselectInterests"
                   isObject={false}
-                  options={data}
+                  options={topicData}
                   selectedValues={selectedValues}
                   onSelect={handleSelect}
                   onRemove={handleRemove}
-                  displayValue="Country"
+                  displayValue="Interests"
                   placeholder="Select your interests"
                   hidePlaceholder={true}
                   style={{
