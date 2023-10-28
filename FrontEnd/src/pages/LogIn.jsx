@@ -9,7 +9,7 @@ import { Toaster, toast } from "react-hot-toast";
 function LogIn() {
   const [showLogin, setShowLogin] = useState(true);
   const [showRegister, setShowRegister] = useState(false);
-  const { logIn, isAuthenticated } = useAuth();
+  const { logIn, isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -34,11 +34,11 @@ function LogIn() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/client");
+      navigate("/");
     }
   }, [isAuthenticated]);
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     let key = true;
     if (!data.user_password) {
       toast("Password is required", {
@@ -60,9 +60,8 @@ function LogIn() {
       });
       key = false;
     }
-
     if (key) {
-      logIn(data);
+      await logIn(data);
     }
   });
 

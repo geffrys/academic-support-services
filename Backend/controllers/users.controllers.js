@@ -52,8 +52,12 @@ export const newUser = async (req, res) => {
     );
     let ids = result.insertId;
     const token = await CreateAccesToken({ id: ids, type: user_type_id });
+
+    const [user] = await pool.query("select * from users where user_id = ?", [
+      ids,
+    ]);
     res.cookie("token", token);
-    res.json({ message: "User created successfully" });
+    res.json(user[0]);
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }

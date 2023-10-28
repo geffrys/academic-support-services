@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await createUserRequest(user);
       setIsAuthenticated(true);
+      setUser(res.data);
       return res;
     } catch (error) {
       console.log(error);
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }) => {
       const res = await loginUserRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      return res.data;
     } catch (error) {
       toast.error(error.response.data.message, {
         style: {

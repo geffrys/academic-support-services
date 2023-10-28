@@ -9,7 +9,7 @@ router.post("/login", LogIn)
 router.post("/logout", logOut)
 router.post("/verify", verifyPasswordToken)
 router.post("/change", changePassword)
-router.get("/verify", verifyToken);
+router.get("/verifytoken", verifyToken);
 router.put("/edit/:user_id", edit);
 router.delete("/");
 

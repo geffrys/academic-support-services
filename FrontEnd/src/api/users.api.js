@@ -21,7 +21,7 @@ export const changePasswordRequest = async (user) => {
 };
 
 export const verifyTokenRequest = async () => {
-  return await axios.get(`http://localhost:3000/api/v1/users/verify`);
+  return await axios.get(`http://localhost:3000/api/v1/users/verifytoken`);
 };
 
 export const logOutRequest = async () =>

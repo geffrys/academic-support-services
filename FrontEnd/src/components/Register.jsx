@@ -193,7 +193,7 @@ const Register = ({ showLoginForm }) => {
                   <option value="" disabled hidden>
                     ID Type
                   </option>
-                  <option value="1">siu</option>
+                  <option value="1">siu1</option>
                   <option value="2">siu2</option>
                   <option value="3">siu3</option>
                 </select>
