@@ -6,14 +6,16 @@ import toast, { Toaster } from "react-hot-toast";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useAuth } from "../context/AuthContext";
 import { getTopicsRequest } from "../api/topics.api";
-import { getUserTypesRequest } from "../api/user_types";
+import { getUserTypesRequest } from "../api/user_types.api";
+import { getIdTypesRequest } from "../api/id_types.api";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
   const [state, setState] = useState(1);
-  const [userTypes, setUserTypes] = useState([]);
   const [countries, setCountries] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [userTypes, setUserTypes] = useState([]);
+  const [idTypes, setIdTypes] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const {
@@ -64,34 +66,44 @@ const Register = ({ showLoginForm }) => {
     }
   };
 
-  const getUserTypes = async () => {
-    const res = await getUserTypesRequest();
-    const UserType = res.data.filter(
-      (userType) => userType.user_type_name !== "admin"
-    );
-    setUserTypes(UserType);
+  const filterUserTypes = async () => {
+    try {
+      const res = await getUserTypesRequest();
+      const filteredUserTypes = res.data.filter(
+        (userType) => userType.user_type_name !== "admin"
+      );
+      setUserTypes(filteredUserTypes);
+    } catch (error) {
+      console.error("Error filtering user types:", error);
+    }
   };
-
-  const getTopics = async () => {
-    const res = await getTopicsRequest();
-    setTopics(res.data);
+  
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      const data = await response.json();
+      setCountries(data);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
   };
-
+  
+  const getTopicsAndIdTypes = async () => {
+    try {
+      const topicsResponse = await getTopicsRequest();
+      setTopics(topicsResponse.data);
+  
+      const idTypesResponse = await getIdTypesRequest();
+      setIdTypes(idTypesResponse.data);
+    } catch (error) {
+      console.error("Error getting topics and id types:", error);
+    }
+  };
+  
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        setCountries(data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-
     fetchCountries();
-    getTopics();
-    getUserTypes();
-    getTopicsRequest();
+    getTopicsAndIdTypes();
+    filterUserTypes();
   }, []);
 
   const onSubmit = handleSubmit((data) => {
@@ -215,9 +227,14 @@ const Register = ({ showLoginForm }) => {
                   <option value="" disabled hidden>
                     Id Type
                   </option>
-                  <option value="1">siu1</option>
-                  <option value="2">siu2</option>
-                  <option value="3">siu3</option>
+                  {idTypes.map((idType) => (
+                    <option
+                      value={idType.user_id_type_id}
+                      key={idType.user_id_type_id}
+                    >
+                      {idType.user_id_type_name}
+                    </option>
+                  ))}
                 </select>
 
                 <input
