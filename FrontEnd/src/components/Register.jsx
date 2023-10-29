@@ -1,17 +1,19 @@
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import "../css/Register.css";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useAuth } from "../context/AuthContext";
-import { useTopics } from "../context/TopicsContext";
+import { getTopicsRequest } from "../api/topics.api";
+import { getUserTypesRequest } from "../api/user_types";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
-  const { topics, getTopics } = useTopics();
   const [state, setState] = useState(1);
+  const [userTypes, setUserTypes] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const {
@@ -62,6 +64,19 @@ const Register = ({ showLoginForm }) => {
     }
   };
 
+  const getUserTypes = async () => {
+    const res = await getUserTypesRequest();
+    const UserType = res.data.filter(
+      (userType) => userType.user_type_name !== "admin"
+    );
+    setUserTypes(UserType);
+  };
+
+  const getTopics = async () => {
+    const res = await getTopicsRequest();
+    setTopics(res.data);
+  };
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -74,6 +89,9 @@ const Register = ({ showLoginForm }) => {
     };
 
     fetchCountries();
+    getTopics();
+    getUserTypes();
+    getTopicsRequest();
   }, []);
 
   const onSubmit = handleSubmit((data) => {
@@ -146,10 +164,6 @@ const Register = ({ showLoginForm }) => {
       signUp(data);
     }
   });
-
-  useEffect(() => {
-    getTopics();
-  }, []);
 
   const data = countries.map((country) => country.name.common);
   const topicData = topics.map((topic) => topic.topic_name);
@@ -238,9 +252,14 @@ const Register = ({ showLoginForm }) => {
                   <option value="" disabled hidden>
                     User Type
                   </option>
-                  <option value="1">Admin</option>
-                  <option value="2">Teacher</option>
-                  <option value="3">Student</option>
+                  {userTypes.map((userType) => (
+                    <option
+                      value={userType.user_type_id}
+                      key={userType.user_type_id}
+                    >
+                      {userType.user_type_name}
+                    </option>
+                  ))}
                 </select>
 
                 <input
