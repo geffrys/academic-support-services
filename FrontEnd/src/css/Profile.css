@@ -1,0 +1,50 @@
+.profile_container{
+    margin-left: 25rem;
+    margin-top: 160px;
+}
+
+.profileTitle_container > h2{
+    font-size: 5rem;
+    margin-bottom: 60px;
+}
+
+
+
+.profile_content_container{
+    display: flex;
+    justify-content: left;
+}
+
+
+
+.profilePicture_container > img{
+    width: 245px;
+    height: 245px;
+    border-radius: 100%;
+    background-color: white;
+    object-fit: contain;
+}
+
+
+
+
+
+.profileInfo_container{
+    margin-bottom: 26px;
+    margin-left: 28px;
+}
+
+.profileInfo_subtitle,
+.profileInfo_description{
+    display: inline;
+    margin: 0px 0.5rem;
+}
+
+.profileInfo_subtitle{
+    font-size: 24px;
+}
+
+.profileInfo_description{
+    font-size: 18px;
+    color: #5CC59E;
+}

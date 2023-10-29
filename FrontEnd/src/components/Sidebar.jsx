@@ -1,7 +1,10 @@
 import { useAuth } from "../context/AuthContext";
 import "../css/Sidebar.css";
+import { useNavigate } from "react-router-dom";
+
 function Sidebar() {
   const { logOut, user } = useAuth();
+  const navigate = useNavigate();
   const onClick = () => {
     logOut();
   };
@@ -14,11 +17,15 @@ function Sidebar() {
         <li className="sidebar__li">Schedule</li>
         <li className="sidebar__li">History</li>
         <li className="sidebar__li">Contacts</li>
-        <li className="sidebar__li">Profile</li>
+        <li className="sidebar__li" onClick={ 
+          () => {
+            navigate("/profile");}
+          }>Profile</li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>Sign Out</h1>
     </section>
   );
 }
+
 
 export default Sidebar;

@@ -18,3 +18,7 @@ export const verifyTokenRequest = async () => {
 
 export const logOutRequest = async () =>
   await axios.post(`http://localhost:3000/api/v1/users/logout`);
+
+export const getUserById = async (id) => {
+  return await axios.get(`http://localhost:3000/api/v1/users/${id}`);
+};

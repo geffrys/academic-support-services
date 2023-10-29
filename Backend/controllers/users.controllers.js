@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import randomstring from "randomstring";
 import { CreateAccesToken } from "../libs/jwt.js";
+import multer from "multer";
+import path from "path";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -154,6 +156,7 @@ export const verifyToken = async (req, res) => {
       "select * from users where user_id = ?",
       [decoded.id]
     );
+    console.log(userFound);
     if (!userFound) return res.status(401).json({ message: "Unauthorized" });
     return res.json({
       id: userFound[0].user_id,
@@ -163,6 +166,35 @@ export const verifyToken = async (req, res) => {
     });
   });
 };
+
+
+
+export async function getUserById(req, res) {
+  const { id } = req.params;
+  const [result] = await pool.query(
+    "SELECT * FROM users WHERE user_id = ?",
+    [id])
+  if(result.length > 0){
+    console.log(result[0]);
+    res.json(result[0]).status(200);
+  }
+  else{
+    res.json({message: "User not found"}).status(404);
+  }
+}
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname + "-" + Date.now() + path.extname(file.originalname));
+  }
+})
+
+const upload = multer({ storage: storage }).single("image");
+
 
 export const edit = async (req, res) => {
   try {
@@ -202,3 +234,4 @@ export const edit = async (req, res) => {
     return res.status(404).json({ message: error.message });
   }
 };
+
