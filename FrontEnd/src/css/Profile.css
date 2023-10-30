@@ -1,6 +1,6 @@
 .profile_container{
     margin-left: 25rem;
-    margin-top: 160px;
+    margin-top: 50px;
 }
 
 .profileTitle_container > h2{
@@ -25,7 +25,10 @@
     object-fit: contain;
 }
 
-
+.profilePicture_container{
+    display: flex;
+    flex-direction: column;
+}
 
 
 

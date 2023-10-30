@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getUserById } from "../api/users.api";
 
-function useUser(id) {
+function useUser(id, depedency) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Nuevo estado para manejar el estado de carga
 
@@ -18,7 +18,7 @@ function useUser(id) {
     }
 
     fetchUser();
-  }, [id]);
+  }, [depedency]);
 
   if (loading) {
     // Si aún está cargando, puedes devolver un objeto de carga o null

@@ -12,7 +12,8 @@ function Profile(){
     // to avoid constantly refreshing propagated by useEffect hook in useAuth
     const userId = user.id;
     const [isEdit, setEdit] = useState(false);
-    const userProfile = useUser(userId);
+    const userProfile = useUser(userId, isEdit);
+    const [userImg, setUserImg] = useState(null);
 
     return(
         <>
@@ -30,9 +31,10 @@ function Profile(){
                         { !isEdit ?  <UserProfileInfo userProfile={userProfile} /> : <EditUser userProfile={userProfile} setEdit={setEdit} /> }                        
                     </article>
                 </section>
-                <button onClick={()=>{
+                { !isEdit ?  <button  onClick={()=>{
                     setEdit(!isEdit);
-                }}>Edit profile</button>
+                }}>Edit profile</button> : ""}
+                
             </section>
         </>
     )

@@ -3,8 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import randomstring from "randomstring";
 import { CreateAccesToken } from "../libs/jwt.js";
-import multer from "multer";
-import path from "path";
+
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -184,20 +183,12 @@ export async function getUserById(req, res) {
 }
 
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
 
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname + "-" + Date.now() + path.extname(file.originalname));
-  }
-})
-
-const upload = multer({ storage: storage }).single("image");
 
 
 export const edit = async (req, res) => {
   try {
+    
 
     const{
       user_id
@@ -212,8 +203,10 @@ export const edit = async (req, res) => {
       user_username,
       user_country,
       user_interests,
+      user_img
     } = req.body;
 
+    
 
 
     const [results] = await pool.query(
