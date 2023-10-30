@@ -92,27 +92,27 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const checkLogin = async () => {
+    const cookies = Cookies.get();
+    if (!cookies.token) {
+      setIsAuthenticated(false);
+      setUser(null);
+      return;
+    }
+    try {
+      const res = await verifyTokenRequest(cookies.token);
+      if (!res.data) {
+        return setIsAuthenticated(false);
+      }
+      setIsAuthenticated(true);
+      setUser(res.data);
+    } catch (error) {
+      setIsAuthenticated(false);
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
-    async function checkLogin() {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setUser(null);
-        return;
-      }
-      try {
-        const res = await verifyTokenRequest(cookies.token);
-        if (!res.data) {
-          return setIsAuthenticated(false);
-        }
-        setIsAuthenticated(true);
-        setUser(res.data);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setUser(null);
-      }
-    }
     checkLogin();
   }, []);
   return (
@@ -126,6 +126,7 @@ export const AuthProvider = ({ children }) => {
         recoverUser,
         verifyPasswordToken,
         changePassword,
+        checkLogin,
       }}
     >
       {children}

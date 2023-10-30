@@ -118,52 +118,10 @@ INSERT INTO session_type(session_type_name) VALUES ('lecture');
 INSERT INTO session_type(session_type_name) VALUES ('practice');
 INSERT INTO session_type(session_type_name) VALUES ('lab');
 
--- avoid user table
-INSERT INTO `users` VALUES (1,'Samuel','Ignacio','Arango','superajke@gmail.com','3043346953','$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm','Superajke4K',3,'1000413879','Colombia','2003-06-21 19:00:00','French Polynesia;Saint Martin;Venezuela','2023-10-20 22:54:45','2023-10-22 18:20:45',1,1,NULL);
+INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('College ID', '1');
+INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('Country ID', '1');
+INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('University ID', '1');
+INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('Passport ID', '1');
 
-INSERT INTO teachers(teacher_id, teacher_entry_date, teacher_exit_date) VALUES (2, '1900-01-01 00:08:00', '1900-01-01 00:17:00');
-
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 1);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 2);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 3);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 4);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 5);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 6);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 7);
-INSERT INTO knowledges(user_id, topic_id) VALUES (2, 8);
-
-INSERT INTO groups_(topic_id, user_id) VALUES (1, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (2, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (3, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (4, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (5, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (6, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (7, 2);
-INSERT INTO groups_(topic_id, user_id) VALUES (8, 2);
-
-INSERT INTO student_groups(group_id, user_id) VALUES (1, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (2, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (3, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (4, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (5, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (6, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (7, 3);
-INSERT INTO student_groups(group_id, user_id) VALUES (8, 3);
-
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (1, '1900-01-01 00:08:00', '1900-01-01 00:10:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (2, '1900-01-01 00:09:00', '1900-01-01 00:10:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (3, '1900-01-01 00:10:00', '1900-01-01 00:11:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (4, '1900-01-01 00:11:00', '1900-01-01 00:12:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (5, '1900-01-01 00:12:00', '1900-01-01 00:13:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (6, '1900-01-01 00:13:00', '1900-01-01 00:14:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (7, '1900-01-01 00:14:00', '1900-01-01 00:15:00');
-INSERT INTO group_schedule(group_id, group_entry_date, group_exit_date) VALUES (8, '1900-01-01 00:15:00', '1900-01-01 00:16:00');
-
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (1, '1900-01-01 00:08:00', '1900-01-01 00:10:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (2, '1900-01-01 00:09:00', '1900-01-01 00:10:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (3, '1900-01-01 00:10:00', '1900-01-01 00:11:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (1, '1900-01-01 00:11:00', '1900-01-01 00:12:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (2, '1900-01-01 00:12:00', '1900-01-01 00:13:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (3, '1900-01-01 00:13:00', '1900-01-01 00:14:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (1, '1900-01-01 00:14:00', '1900-01-01 00:15:00', 3, 2);
-INSERT INTO session(session_type_id, session_entry_date, session_exit_date, user_id, teacher_id) VALUES (2, '1900-01-01 00:15:00', '1900-01-01 00:16:00', 3, 2);
+INSERT INTO `users` (`user_id`, `user_name`, `user_last_name`, `user_mail`, `user_phone`, `user_password`, `user_username`, `user_type_id`, `user_identification`, `user_country`, `user_birth_date`, `user_interests`, `user_created_at`, `user_updated_at`, `active`, `user_id_type_id`) VALUES ('1', 'admin', 'admin', 'admin@gmail.com', '1', '$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm', 'admin', '1', '1', 'Colombia', '2003-06-22 19:00:00', 'CSS', '2023-10-30 18:05:02', '2023-10-30 18:05:02', '1', '1');
+INSERT INTO `users` VALUES (2,'Samuel','Ignacio','Arango','superajke@gmail.com','3043346953','$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm','Superajke4K',3,'1000413879','Colombia','2003-06-21 19:00:00','JavaScript;CSS;HTML','2023-10-20 22:54:45','2023-10-22 18:20:45',1,1,NULL);

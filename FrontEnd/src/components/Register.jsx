@@ -28,19 +28,19 @@ const Register = ({ showLoginForm }) => {
     showLoginForm();
   };
 
-  const handleSelect = (selectedList, selectedItem) => {
+  const handleSelect = (selectedList) => {
     setSelectedValues(selectedList);
   };
 
-  const handleRemove = (selectedList, removedItem) => {
+  const handleRemove = (selectedList) => {
     setSelectedValues(selectedList);
   };
 
-  const handleSelectSingle = (selectedList, selectedItem) => {
+  const handleSelectSingle = (selectedList) => {
     setSelectedValue(selectedList);
   };
 
-  const handleRemoveSingle = (selectedList, removedItem) => {
+  const handleRemoveSingle = (selectedList) => {
     setSelectedValue(selectedList);
   };
 
@@ -77,7 +77,7 @@ const Register = ({ showLoginForm }) => {
       console.error("Error filtering user types:", error);
     }
   };
-  
+
   const fetchCountries = async () => {
     try {
       const response = await fetch("https://restcountries.com/v3.1/all");
@@ -87,19 +87,19 @@ const Register = ({ showLoginForm }) => {
       console.error("Error fetching countries:", error);
     }
   };
-  
+
   const getTopicsAndIdTypes = async () => {
     try {
       const topicsResponse = await getTopicsRequest();
       setTopics(topicsResponse.data);
-  
+
       const idTypesResponse = await getIdTypesRequest();
       setIdTypes(idTypesResponse.data);
     } catch (error) {
       console.error("Error getting topics and id types:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchCountries();
     getTopicsAndIdTypes();
@@ -269,14 +269,16 @@ const Register = ({ showLoginForm }) => {
                   <option value="" disabled hidden>
                     User Type
                   </option>
-                  {userTypes.map((userType) => (
-                    <option
-                      value={userType.user_type_id}
-                      key={userType.user_type_id}
-                    >
-                      {userType.user_type_name}
-                    </option>
-                  ))}
+                  {userTypes
+                    .filter((userType) => userType.user_type_id != "1")
+                    .map((userType) => (
+                      <option
+                        value={userType.user_type_id}
+                        key={userType.user_type_id}
+                      >
+                        {userType.user_type_name}
+                      </option>
+                    ))}
                 </select>
 
                 <input

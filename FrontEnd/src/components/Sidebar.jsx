@@ -4,7 +4,7 @@ import { getUserTypesRequest } from "../api/user_types.api";
 import "../css/Sidebar.css";
 import { useEffect, useState } from "react";
 function Sidebar() {
-  const { logOut, user } = useAuth();
+  const { logOut, user, checkLogin } = useAuth();
   const navigate = useNavigate();
   const onClick = () => {
     logOut();
@@ -14,6 +14,7 @@ function Sidebar() {
   const [userType, setUserType] = useState("");
 
   useEffect(() => {
+    checkLogin();
     const getUserType = async () => {
       try {
         const res = await getUserTypesRequest();
