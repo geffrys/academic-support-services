@@ -35,6 +35,7 @@
 .profileInfo_container{
     margin-bottom: 26px;
     margin-left: 28px;
+    max-width: 500px;
 }
 
 .profileInfo_subtitle,
@@ -50,4 +51,9 @@
 .profileInfo_description{
     font-size: 18px;
     color: #5CC59E;
+    word-wrap: break-word;
+}
+
+.profileInfo_description > span{
+    padding: 0px 10px;
 }
