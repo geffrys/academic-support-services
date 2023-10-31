@@ -203,7 +203,6 @@ export const edit = async (req, res) => {
       user_username,
       user_country,
       user_interests,
-      user_img
     } = req.body;
 
     

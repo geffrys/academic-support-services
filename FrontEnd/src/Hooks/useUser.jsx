@@ -9,7 +9,7 @@ function useUser(id, depedency) {
     async function fetchUser() {
       try {
         const result = await getUserById(id);
-        setUser(result.data);
+        setUser(await result.data);
         setLoading(false); // Cambia el estado de carga a false cuando la llamada se completa
       } catch (error) {
         console.error("Error", error);
@@ -25,9 +25,6 @@ function useUser(id, depedency) {
     return { loading: true, user: null };
   }
 
-  if (!user) {
-    throw new Error("User not found");
-  }
 
   return user;
 }

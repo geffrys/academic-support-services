@@ -18,7 +18,7 @@ app.use(bodyparser.json());
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true,
+    credentials: true
   })
 );
 app.use("/api/v1", mainRouter);

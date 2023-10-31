@@ -1,5 +1,7 @@
 .editProfileForm{
     max-height: max-content;
+    display: flex;
+
 }
 
 
@@ -14,7 +16,8 @@
 }
 
 
-.editProfileForm__formGroup input {
+.editProfileForm__formGroup input,
+.editProfileForm__formGroup select {
     border-radius: 22px;
     border: 2px solid #5CC59E;
     background: #363A51;
@@ -26,10 +29,18 @@
 
 
 .editProfileForm__formGroup .multiSelectContainer {
-    max-height: 80px;
+    max-height: fit-content;
     max-width: 212px;
 }
 
+
+.editProfileForm_buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
 
 .editProfileForm_submit, 
 .editProfileForm_cancel {
@@ -42,6 +53,7 @@
 }
 
 .editProfileForm_cancel{
-    background-color: #363A51;
+    background-color: var(--background-color-dark);
+    color: red;
 }
 

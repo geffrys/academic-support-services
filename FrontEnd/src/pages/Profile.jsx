@@ -21,7 +21,7 @@ function Profile(){
                 
                 <header className="profileTitle_container">
                     {isEdit ? <h2>Edit Profile</h2> : <h2>Profile</h2>  }
-                </header>
+                </header> 
                 <section className="profile_content_container">
                     
                     <aside className="profilePicture_container">
