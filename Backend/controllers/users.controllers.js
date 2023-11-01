@@ -52,8 +52,12 @@ export const newUser = async (req, res) => {
     );
     let ids = result.insertId;
     const token = await CreateAccesToken({ id: ids, type: user_type_id });
+
+    const [user] = await pool.query("select * from users where user_id = ?", [
+      ids,
+    ]);
     res.cookie("token", token);
-    res.json({ message: "User created successfully" });
+    res.json(user[0]);
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }
@@ -103,13 +107,37 @@ export const recoverPassword = async (req, res) => {
 
     const token = randomstring.generate({ length: 4, charset: "numeric" });
 
-    await pool.query("UPDATE users SET token = ? WHERE user_mail = ?", [token, user_mail]);
+    await pool.query("UPDATE users SET token = ? WHERE user_mail = ?", [
+      token,
+      user_mail,
+    ]);
 
     setTimeout(async () => {
-      await pool.query("UPDATE users SET token = NULL WHERE user_mail = ?", [user_mail]);
+      await pool.query("UPDATE users SET token = NULL WHERE user_mail = ?", [
+        user_mail,
+      ]);
     }, 5 * 60 * 1000);
 
-    res.json({ message: "Token sent to your email", token: token });
+    res.json({
+      message: "Token sent to your email",
+      token: token,
+      user_id: result[0].user_id,
+    });
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
+
+export const verifyPasswordToken = async (req, res) => {
+  try {
+    const { user_id, token } = req.body;
+    const [result] = await pool.query("select * from users where user_id = ?", [
+      user_id,
+    ]);
+    if (result[0].token != token) {
+      return res.json({ message: "Token not valid", validation: false });
+    }
+    res.json({ message: "Token valid", validation: true });
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }
@@ -117,27 +145,20 @@ export const recoverPassword = async (req, res) => {
 
 export const changePassword = async (req, res) => {
   try {
-    const { user_mail, token, user_password } = req.body;
-    const [result] = await pool.query(
-      "select * from users where user_mail = ?",
-      [user_mail]
-    );
+    const { user_id, user_password } = req.body;
+    const [result] = await pool.query("select * from users where user_id = ?", [
+      user_id,
+    ]);
 
     if (result.length === 0)
       return res.status(404).json({ message: "User not found" });
 
-    const user = result[0];
-
-    if (bcrypt.compareSync(token, user.token)) {
-      const hashedPassword = bcrypt.hashSync(user_password, 10);
-      await pool.query(
-        "UPDATE users SET contrasena = ?, token = NULL WHERE user_id = ?",
-        [hashedPassword, user.user_id]
-      );
-      res.json({ message: "Contraseña actualizada con éxito" });
-    } else {
-      res.status(401).json({ message: "Token no válido" });
-    }
+    const hashedPassword = bcrypt.hashSync(user_password, 10);
+    await pool.query(
+      "UPDATE users SET user_password = ?, token = NULL WHERE user_id = ?",
+      [hashedPassword, user_id]
+    );
+    res.json({ message: "Password updated successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -162,4 +183,52 @@ export const verifyToken = async (req, res) => {
       user_type: userFound[0].user_type_id,
     });
   });
+};
+
+export async function getUserById(req, res) {
+  const { id } = req.params;
+  const [result] = await pool.query("SELECT * FROM users WHERE user_id = ?", [
+    id,
+  ]);
+  if (result.length > 0) {
+    res.json(result[0]).status(200);
+  } else {
+    res.json({ message: "User not found" }).status(404);
+  }
+}
+
+export const edit = async (req, res) => {
+  try {
+    const { user_id } = req.params;
+
+    const {
+      user_name,
+      user_middle_name,
+      user_last_name,
+      user_mail,
+      user_phone,
+      user_username,
+      user_country,
+      user_interests,
+    } = req.body;
+
+    const [results] = await pool.query(
+      "UPDATE users SET user_name = ?, user_middle_name = ?, user_last_name = ?, user_mail = ?, user_phone = ?, user_username = ?, user_country = ?, user_interests = ? WHERE user_id = ?",
+      [
+        user_name,
+        user_middle_name,
+        user_last_name,
+        user_mail,
+        user_phone,
+        user_username,
+        user_country,
+        user_interests,
+        user_id,
+      ]
+    );
+
+    res.status(200).send({ message: "User updated successfully" });
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
 };
