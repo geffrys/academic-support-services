@@ -25,7 +25,7 @@ function UserProfileInfo({ userProfile }) {
                 <p className="profileInfo_description">{
                     (userProfile.user_interests) ? userProfile.user_interests.split(";").map((interest) => {
                         return (
-                            <span>{interest}</span>
+                            <span className="profileInfo__interest">{interest}</span>
                         )
                     }) : ""
                 }</p>

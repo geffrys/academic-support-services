@@ -57,3 +57,20 @@
 .profileInfo_description > span{
     padding: 0px 10px;
 }
+
+.editProfile_buton{
+    border-radius: 20px;
+    padding: 16px 44px;
+    background-color: var(--primary-color);
+}
+
+.profileInfo_subtitle{
+    color: white;
+}
+
+.profileInfo__interest{
+    background-color: var(--background-color-dark);
+    padding: 10px ;
+    border-radius: 20px;
+    margin: 0px 5px ;
+}

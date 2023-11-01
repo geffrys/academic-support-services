@@ -49,6 +49,7 @@ function EditUser({ userProfile, setEdit }) {
         }
         if (data.user_middle_name.length === 0) {
             console.log("no middle name");
+            Toaster("Please enter your middle name")
             toast.error("Please enter your middle name");
             isValid = false;
         }
@@ -75,6 +76,7 @@ function EditUser({ userProfile, setEdit }) {
         }
         if (data.user_interests.length === 0) {
             console.log("no interests");
+            Toaster("Please enter your middle name")
             toast.error("Please select your interests");
             isValid = false;
         }
@@ -111,7 +113,6 @@ function EditUser({ userProfile, setEdit }) {
             setValue(key, userProfile[key]);
         });
         setValue("user_country", userProfile.user_country);
-
     }, [userProfile]);
 
 
@@ -198,7 +199,7 @@ function EditUser({ userProfile, setEdit }) {
                                     background: "var(--background-color-dark)",
                                 },
                                 option: {
-                                    color: "var(--primary-color)",
+                                    color: "black",
                                 },
                             }}
                         />

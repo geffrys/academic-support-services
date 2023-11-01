@@ -31,7 +31,7 @@ function Profile(){
                         { !isEdit ?  <UserProfileInfo userProfile={userProfile} /> : <EditUser userProfile={userProfile} setEdit={setEdit} /> }                        
                     </article>
                 </section>
-                { !isEdit ?  <button  onClick={()=>{
+                { !isEdit ?  <button className="editProfile_buton" onClick={()=>{
                     setEdit(!isEdit);
                 }}>Edit profile</button> : ""}
                 
