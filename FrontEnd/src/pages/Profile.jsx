@@ -27,7 +27,7 @@ function Profile() {
               src={
                 userProfile && userProfile.user_img
                   ? `${userProfile.user_img}`
-                  : "../../public/images/6d73f20813d7e26c3a5de4f382a5d705_360_360.jpg"
+                  : "../../public/images/6d73f20813d7e26c3a5de4f382a5d705_360_360.png"
               }
               alt="profile picture"
             />
