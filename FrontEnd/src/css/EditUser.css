@@ -1,59 +1,52 @@
-.editProfileForm{
-    max-height: max-content;
-    display: flex;
-
+.editProfileForm {
+  max-height: max-content;
+  display: flex;
 }
-
-
 
 .editProfileForm__formGroup {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 1rem;
-    max-width: 700px;
-    box-sizing: border-box;
-    color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  max-width: 700px;
+  box-sizing: border-box;
+  color: white;
 }
-
 
 .editProfileForm__formGroup input,
 .editProfileForm__formGroup select {
-    border-radius: 22px;
-    border: 2px solid #5CC59E;
-    background: #363A51;
-    color: white;
-    padding: 10px;
-    width: 212px;
-    height: 44px;
+  border-radius: 22px;
+  border: 2px solid #5cc59e;
+  background: #363a51;
+  color: white;
+  padding: 10px;
+  width: 212px;
+  height: 44px;
 }
-
 
 .editProfileForm__formGroup .multiSelectContainer {
-    max-height: fit-content;
-    max-width: 212px;
+  max-height: fit-content;
+  max-width: 212px;
 }
 
-
-.editProfileForm_buttons{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
+.editProfileForm_buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-.editProfileForm_submit, 
+.editProfileForm_submit,
 .editProfileForm_cancel {
-    border-radius: 20px;
-    padding: 16px 44px;
+  border-radius: 20px;
+  padding: 16px 44px;
 }
 
 .editProfileForm_submit {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
-.editProfileForm_cancel{
-    background-color: var(--background-color-dark);
-    color: red;
+.editProfileForm_cancel {
+  background-color: var(--background-color-dark);
+  color: red;
 }
-
