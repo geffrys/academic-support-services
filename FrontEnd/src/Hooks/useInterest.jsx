@@ -15,7 +15,7 @@ function useInterest() {
       "Literature",
       "Movies"
     ]);
-  }, []); 
+  }, []);
 
   return interests;
 }

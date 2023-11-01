@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import randomstring from "randomstring";
 import { CreateAccesToken } from "../libs/jwt.js";
 
-
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -176,7 +175,6 @@ export const verifyToken = async (req, res) => {
       "select * from users where user_id = ?",
       [decoded.id]
     );
-    console.log(userFound);
     if (!userFound) return res.status(401).json({ message: "Unauthorized" });
     return res.json({
       id: userFound[0].user_id,
@@ -187,25 +185,17 @@ export const verifyToken = async (req, res) => {
   });
 };
 
-
-
 export async function getUserById(req, res) {
   const { id } = req.params;
-  const [result] = await pool.query(
-    "SELECT * FROM users WHERE user_id = ?",
-    [id])
-  if(result.length > 0){
-    console.log(result[0]);
+  const [result] = await pool.query("SELECT * FROM users WHERE user_id = ?", [
+    id,
+  ]);
+  if (result.length > 0) {
     res.json(result[0]).status(200);
-  }
-  else{
-    res.json({message: "User not found"}).status(404);
+  } else {
+    res.json({ message: "User not found" }).status(404);
   }
 }
-
-
-
-
 
 export const edit = async (req, res) => {
   try {
@@ -221,8 +211,6 @@ export const edit = async (req, res) => {
       user_country,
       user_interests,
     } = req.body;
- 
-
 
     const [results] = await pool.query(
       "UPDATE users SET user_name = ?, user_middle_name = ?, user_last_name = ?, user_mail = ?, user_phone = ?, user_username = ?, user_country = ?, user_interests = ? WHERE user_id = ?",
@@ -244,4 +232,3 @@ export const edit = async (req, res) => {
     return res.status(404).json({ message: error.message });
   }
 };
-

@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useAuth } from "../context/AuthContext";
-import { getTopicsRequest } from "../api/topics.api";
 import { getUserTypesRequest } from "../api/user_types.api";
 import { getIdTypesRequest } from "../api/id_types.api";
+import useInterest from "../Hooks/useInterest";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
@@ -23,6 +23,8 @@ const Register = ({ showLoginForm }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const Interest = useInterest();
 
   const onBar = () => {
     showLoginForm();
@@ -90,9 +92,6 @@ const Register = ({ showLoginForm }) => {
 
   const getTopicsAndIdTypes = async () => {
     try {
-      const topicsResponse = await getTopicsRequest();
-      setTopics(topicsResponse.data);
-
       const idTypesResponse = await getIdTypesRequest();
       setIdTypes(idTypesResponse.data);
     } catch (error) {
@@ -178,7 +177,6 @@ const Register = ({ showLoginForm }) => {
   });
 
   const data = countries.map((country) => country.name.common);
-  const topicData = topics.map((topic) => topic.topic_name);
 
   return (
     <section className="register">
@@ -352,7 +350,7 @@ const Register = ({ showLoginForm }) => {
                 <Multiselect
                   id="multiselectInterests"
                   isObject={false}
-                  options={topicData}
+                  options={Interest}
                   selectedValues={selectedValues}
                   onSelect={handleSelect}
                   onRemove={handleRemove}

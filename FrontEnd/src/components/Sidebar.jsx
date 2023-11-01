@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getUserTypesRequest } from "../api/user_types.api";
 import "../css/Sidebar.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const { logOut, user, checkLogin } = useAuth();
@@ -29,7 +28,7 @@ function Sidebar() {
       }
     };
     getUserType();
-  }, [user.user_type]);
+  }, [user.user_type, user.user_name, user.user_last_name]);
 
   return (
     <section className="sidebar">
@@ -42,10 +41,14 @@ function Sidebar() {
         <li className="sidebar__li">Schedule</li>
         <li className="sidebar__li">History</li>
         <li className="sidebar__li">Contacts</li>
-        <li className="sidebar__li" onClick={ 
-          () => {
-            navigate("/profile");}
-          }>Profile</li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Profile
+        </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>
         Sign Out
@@ -53,6 +56,5 @@ function Sidebar() {
     </section>
   );
 }
-
 
 export default Sidebar;
