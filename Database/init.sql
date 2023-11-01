@@ -100,10 +100,17 @@ CREATE TABLE session(
     FOREIGN KEY (teacher_id) REFERENCES users(user_id)    
 );
 
+ALTER TABLE `academic_poli`.`users` 
+ADD COLUMN `user_img` VARCHAR(200) NULL AFTER `token`;
+
 -- need to insert test data in each table
 INSERT INTO user_type(user_type_name) VALUES ('admin');
 INSERT INTO user_type(user_type_name) VALUES ('teacher');
 INSERT INTO user_type(user_type_name) VALUES ('student');
+
+INSERT INTO user_id_type(user_id_type_name) VALUES ('CC');
+INSERT INTO user_id_type(user_id_type_name) VALUES ('TI');
+INSERT INTO user_id_type(user_id_type_name) VALUES ('CE');
 
 INSERT INTO topics(topic_name, topic_description) VALUES ('Java', 'Java programming language');
 INSERT INTO topics(topic_name, topic_description) VALUES ('PHP', 'PHP programming language');

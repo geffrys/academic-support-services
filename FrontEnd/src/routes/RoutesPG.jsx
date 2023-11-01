@@ -4,6 +4,7 @@ import LogIn from "../pages/LogIn";
 import NotFound from "../components/NotFound";
 import Recover from "../pages/Recover";
 import Home from "../pages/Home";
+import Profile from "../pages/Profile";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
@@ -16,6 +17,8 @@ function RoutesPG() {
         path="/recover/:user_mail"
         element={!isAuthenticated && <Recover />}
       />
+      <Route path="/recover" element={!isAuthenticated && <Recover />}></Route>
+      <Route path="/profile" element={isAuthenticated? <Profile/> : <LogIn />}></Route>
     </Routes>
   );
 }
