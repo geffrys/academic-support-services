@@ -1,15 +1,21 @@
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import "../css/Register.css";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useAuth } from "../context/AuthContext";
+import { getUserTypesRequest } from "../api/user_types.api";
+import { getIdTypesRequest } from "../api/id_types.api";
+import useInterest from "../Hooks/useInterest";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
   const [state, setState] = useState(1);
   const [countries, setCountries] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [userTypes, setUserTypes] = useState([]);
+  const [idTypes, setIdTypes] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const {
@@ -18,23 +24,25 @@ const Register = ({ showLoginForm }) => {
     formState: { errors },
   } = useForm();
 
+  const Interest = useInterest();
+
   const onBar = () => {
     showLoginForm();
   };
 
-  const handleSelect = (selectedList, selectedItem) => {
+  const handleSelect = (selectedList) => {
     setSelectedValues(selectedList);
   };
 
-  const handleRemove = (selectedList, removedItem) => {
+  const handleRemove = (selectedList) => {
     setSelectedValues(selectedList);
   };
 
-  const handleSelectSingle = (selectedList, selectedItem) => {
+  const handleSelectSingle = (selectedList) => {
     setSelectedValue(selectedList);
   };
 
-  const handleRemoveSingle = (selectedList, removedItem) => {
+  const handleRemoveSingle = (selectedList) => {
     setSelectedValue(selectedList);
   };
 
@@ -60,18 +68,41 @@ const Register = ({ showLoginForm }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        setCountries(data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
+  const filterUserTypes = async () => {
+    try {
+      const res = await getUserTypesRequest();
+      const filteredUserTypes = res.data.filter(
+        (userType) => userType.user_type_name !== "admin"
+      );
+      setUserTypes(filteredUserTypes);
+    } catch (error) {
+      console.error("Error filtering user types:", error);
+    }
+  };
 
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      const data = await response.json();
+      setCountries(data);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
+  };
+
+  const getTopicsAndIdTypes = async () => {
+    try {
+      const idTypesResponse = await getIdTypesRequest();
+      setIdTypes(idTypesResponse.data);
+    } catch (error) {
+      console.error("Error getting topics and id types:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchCountries();
+    getTopicsAndIdTypes();
+    filterUserTypes();
   }, []);
 
   const onSubmit = handleSubmit((data) => {
@@ -189,13 +220,19 @@ const Register = ({ showLoginForm }) => {
                 <select
                   type="text"
                   {...register("user_id_type_id", { required: true })}
+                  defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    ID Type
+                    Id Type
                   </option>
-                  <option value="1">siu</option>
-                  <option value="2">siu2</option>
-                  <option value="3">siu3</option>
+                  {idTypes.map((idType) => (
+                    <option
+                      value={idType.user_id_type_id}
+                      key={idType.user_id_type_id}
+                    >
+                      {idType.user_id_type_name}
+                    </option>
+                  ))}
                 </select>
 
                 <input
@@ -230,9 +267,16 @@ const Register = ({ showLoginForm }) => {
                   <option value="" disabled hidden>
                     User Type
                   </option>
-                  <option value="1">Admin</option>
-                  <option value="2">Teacher</option>
-                  <option value="3">Student</option>
+                  {userTypes
+                    .filter((userType) => userType.user_type_id != "1")
+                    .map((userType) => (
+                      <option
+                        value={userType.user_type_id}
+                        key={userType.user_type_id}
+                      >
+                        {userType.user_type_name}
+                      </option>
+                    ))}
                 </select>
 
                 <input
@@ -264,6 +308,7 @@ const Register = ({ showLoginForm }) => {
               <h1>Interest Information</h1>
               <div className="register__select">
                 <Multiselect
+                  id="multiselectCountry"
                   isObject={false}
                   options={data}
                   selectedValues={selectedValue}
@@ -303,12 +348,13 @@ const Register = ({ showLoginForm }) => {
 
               <div className="register__select">
                 <Multiselect
+                  id="multiselectInterests"
                   isObject={false}
-                  options={data}
+                  options={Interest}
                   selectedValues={selectedValues}
                   onSelect={handleSelect}
                   onRemove={handleRemove}
-                  displayValue="Country"
+                  displayValue="Interests"
                   placeholder="Select your interests"
                   hidePlaceholder={true}
                   style={{
