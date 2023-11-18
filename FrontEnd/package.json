@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
     "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

@@ -25,7 +25,14 @@
 }
 
 .recover__text {
+  text-align: center;
   padding-bottom: 2rem;
+}
+
+
+.recover__text--modifier {
+  text-align: center;
+  padding-top: 2rem;
 }
 
 .recover__form input {

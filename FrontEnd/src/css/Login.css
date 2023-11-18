@@ -19,7 +19,7 @@
   transition: transform 0.5s;
 }
 
-.active{
+.active {
   transition: all 0.5s ease;
   transform: rotateY(180deg);
   opacity: 1;
@@ -81,6 +81,17 @@
   border-radius: 2.2rem;
   border: 1px solid #5cc59e;
   background: #67f494;
+  font-weight: 600;
+}
+
+.cancel_button {
+  cursor: pointer;
+  margin-top: 2.2rem;
+  width: 14rem;
+  height: 4.4rem;
+  border-radius: 2.2rem;
+  border: 1px solid red;
+  background: rgb(253, 133, 133);
   font-weight: 600;
 }
 
