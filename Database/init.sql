@@ -100,6 +100,15 @@ CREATE TABLE session(
     FOREIGN KEY (teacher_id) REFERENCES users(user_id)    
 );
 
+CREATE TABLE availability(
+	availability_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    availability_day VARCHAR(20) NOT NULL,
+    availability_start_time TIME NOT NULL,
+    availability_end_time TIME NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES  users(user_id) 
+);
+
 -- need to insert test data in each table
 INSERT INTO user_type(user_type_name) VALUES ('Admin');
 INSERT INTO user_type(user_type_name) VALUES ('Teacher');
