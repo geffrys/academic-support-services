@@ -92,7 +92,7 @@ CREATE TABLE session(
     session_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     session_type_id INT NOT NULL,
     session_entry_date DATETIME NOT NULL,
-    session_exit_date DATETIME NOT NULL,
+    session_duration INT NOT NULL,
     user_id INT NOT NULL,
     teacher_id INT NOT NULL,
     FOREIGN KEY (session_type_id) REFERENCES session_type(session_type_id),

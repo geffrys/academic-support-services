@@ -2,8 +2,10 @@ import { Router } from "express";
 import { recoverPassword, newUser, LogIn, logOut, verifyToken, edit, verifyPasswordToken, changePassword, getUserById  } from "../controllers/users.controllers.js";
 import multer from "multer";
 import path from "path";
+import teacherRoutes from "./teacher.routes.js";
 
 const router = Router();
+router.use("/teachers", teacherRoutes);
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
