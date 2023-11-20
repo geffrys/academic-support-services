@@ -72,6 +72,15 @@
   display: flex;
   padding: 1rem 1rem;
   align-content: center;
-  background-color: var(--third-color);
   justify-content: space-between;
+  background-color: var(--third-color);
+  border-bottom: 3px solid var(--background-color);
+}
+
+.availability_day_item > div > input {
+  width: 20rem;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  background-color: var(--background-color);
 }

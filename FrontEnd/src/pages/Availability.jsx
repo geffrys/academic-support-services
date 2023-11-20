@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAvailability from "../Hooks/useAvailability";
 import AvailabilityInfo from "../components/Availabilityinfo";
+import NewAvailability from "../components/NewAvailability";
 import { useAuth } from "../context/AuthContext";
 import "../css/Availability.css";
 
@@ -37,66 +38,162 @@ function Availability() {
           <div>
             <div className="availability_day">
               Tuesday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Tuesday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Tuesday"
             />
+            {isEdit === "Tuesday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div>
             <div className="availability_day">
               Wednesday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Wednesday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Wednesday"
             />
+            {isEdit === "Wednesday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div>
             <div className="availability_day">
               Thursday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Thursday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Thursday"
             />
+            {isEdit === "Thursday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div>
             <div className="availability_day">
               Friday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Friday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Friday"
             />
+            {isEdit === "Friday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div>
             <div className="availability_day">
               Saturday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Saturday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Saturday"
             />
+            {isEdit === "Saturday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div>
             <div className="availability_day">
               Sunday
-              <button className="availabilityPrimary_btn">➕</button>
+              <button
+                className="availabilityPrimary_btn"
+                onClick={() => {
+                  setEdit("Sunday");
+                }}
+              >
+                ➕
+              </button>
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
               day="Sunday"
             />
+            {isEdit === "Sunday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </section>
       </section>
