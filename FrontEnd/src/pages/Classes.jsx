@@ -94,7 +94,7 @@ function Classes() {
                 }
 
                 {
-                    selectedSessionType == SESSION_TYPE_GROUP && (
+                    selectedSessionType == SESSION_TYPE_GROUP && selectedTopic != "" && (
                         <>
                             <div>
                                 <label htmlFor="">Select your group of preference</label>
@@ -115,7 +115,7 @@ function Classes() {
 
                 {/* then i need to select the date and time that i want to have the session */}
                 {
-                    selectedSessionType != SESSION_TYPE_GROUP && selectedSessionType != "" && (
+                    selectedSessionType != SESSION_TYPE_GROUP && selectedSessionType != "" && selectedTopic != "" && (
                         <>
                             <div>
                                 <label htmlFor="">Select Date</label>
@@ -124,10 +124,6 @@ function Classes() {
                             <div>
                                 <label htmlFor="">Session duration</label>
                                 <input type="text" placeholder="session duration" />
-                            </div>
-                            <div>
-                                <label htmlFor="">Select Date</label>
-                                <input type="datetime-local" {...register('session_entry_date')} />
                             </div>
                         </>
                     )
