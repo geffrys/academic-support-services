@@ -41,7 +41,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Martes"
+              day="Tuesday"
             />
           </div>
 
@@ -52,7 +52,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Miercoles"
+              day="Wednesday"
             />
           </div>
 
@@ -63,7 +63,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Jueves"
+              day="Thursday"
             />
           </div>
 
@@ -74,7 +74,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Viernes"
+              day="Friday"
             />
           </div>
 
@@ -85,7 +85,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Sabado"
+              day="Saturday"
             />
           </div>
           <div>
@@ -95,7 +95,7 @@ function Availability() {
             </div>
             <AvailabilityInfo
               userAvailability={userAvailability}
-              day="Domingo"
+              day="Sunday"
             />
           </div>
         </section>

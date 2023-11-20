@@ -3,6 +3,8 @@ function AvailabilityInfo({ userAvailability, day }) {
   if (!userAvailability.loading) {
     userAvailability.map((item) => {
       if (item.availability_day === day) {
+        item.availability_start_time = item.availability_start_time.slice(0, 5);
+        item.availability_end_time = item.availability_end_time.slice(0, 5);
         dayItems.push(item);
       }
     });
