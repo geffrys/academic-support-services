@@ -5,6 +5,7 @@ import NotFound from "../components/NotFound";
 import Recover from "../pages/Recover";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
+import Availability from "../pages/Availability";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
@@ -18,7 +19,14 @@ function RoutesPG() {
         element={!isAuthenticated && <Recover />}
       />
       <Route path="/recover" element={!isAuthenticated && <Recover />}></Route>
-      <Route path="/profile" element={isAuthenticated? <Profile/> : <LogIn />}></Route>
+      <Route
+        path="/profile"
+        element={isAuthenticated ? <Profile /> : <LogIn />}
+      ></Route>
+      <Route
+        path="/availability"
+        element={isAuthenticated ? <Availability /> : <LogIn />}
+      ></Route>
     </Routes>
   );
 }

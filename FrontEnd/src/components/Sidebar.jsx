@@ -48,6 +48,9 @@ function Sidebar() {
         <li className="sidebar__li">Schedule</li>
         <li className="sidebar__li">History</li>
         <li className="sidebar__li">Contacts</li>
+        <li className="sidebar__li" onClick={() => {
+          navigate("/availability");
+        }}>Configure Availability</li>
         <li
           className="sidebar__li"
           onClick={() => {
