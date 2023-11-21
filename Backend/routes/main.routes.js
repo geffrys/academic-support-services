@@ -15,9 +15,8 @@ router.use("/user_types", userTypesRoutes);
 router.use("/id_types", idTypesRoutes);
 router.use("/session_types", sessionTypesRoutes);
 router.use("/groups", groupsRoutes);
-router.use("/sessions", sessionRoutes);
+router.use("/sessions", SessionRoutes);
 router.use("/topics", topicsRoutes);
-router.use("/session",SessionRoutes);
 router.use("/availability", availabilityRoutes);
 
 

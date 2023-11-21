@@ -274,7 +274,7 @@ function Classes() {
                                 </div>
                                 <div className="classesFormGroup">
                                     <label htmlFor="">Enter the session duration<span className="RequiredField">*</span></label>
-                                    <select name="" id="">
+                                    <select name="" id="" {...register('session_duration')}>
                                         <option value="">select duration</option>
                                         {
                                             [30,60,90,120].map((duration, index) => (
