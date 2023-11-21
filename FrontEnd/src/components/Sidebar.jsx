@@ -59,6 +59,12 @@ function Sidebar() {
         >
           Profile
         </li>
+        <li className="sidebar__li"
+          onClick={() => {
+            navigate("/classes");
+          }}>
+          Service
+        </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>
         Sign Out

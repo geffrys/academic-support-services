@@ -93,11 +93,13 @@ CREATE TABLE session(
     session_type_id INT NOT NULL,
     session_entry_date DATETIME NOT NULL,
     session_exit_date DATETIME NOT NULL,
+    topic_id INT NOT NULL,
     user_id INT NOT NULL,
     teacher_id INT NOT NULL,
     FOREIGN KEY (session_type_id) REFERENCES session_type(session_type_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (teacher_id) REFERENCES users(user_id)    
+    FOREIGN KEY (teacher_id) REFERENCES users(user_id),
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id)
 );
 
 CREATE TABLE availability(
@@ -135,3 +137,12 @@ INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('Passport ID', 
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_last_name`, `user_mail`, `user_phone`, `user_password`, `user_username`, `user_type_id`, `user_identification`, `user_country`, `user_birth_date`, `user_interests`, `user_created_at`, `user_updated_at`, `active`, `user_id_type_id`) VALUES ('1', 'admin', 'admin', 'admin@gmail.com', '1', '$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm', 'admin', '1', '1', 'Colombia', '2003-06-22 19:00:00', 'Programming', '2023-10-30 18:05:02', '2023-10-30 18:05:02', '1', '1');
 INSERT INTO `users` VALUES (2,'Samuel','Ignacio','Arango','superajke@gmail.com','3043346953','$2b$10$JQYDuIDQEvRgLSu1MTJLiOEwJt9OCWP6too.xJ.E56655K2Ptklrm','Superajke4K',3,'1000413879','Colombia','2003-06-21 19:00:00','Music;Programming','2023-10-20 22:54:45','2023-10-22 18:20:45',1,1,NULL);
+
+
+-- ALTERS
+
+ALTER TABLE session ADD COLUMN topic_id INT NOT NULL AFTER session_exit_date;
+ALTER TABLE session ADD CONSTRAINT fk_topic_id FOREIGN KEY (topic_id) REFERENCES topics(topic_id);
+
+
+ALTER TABLE groups_ ADD COLUMN session_days VARCHAR(255) NOT NULL AFTER user_id;
