@@ -4,7 +4,7 @@ export const getUserAvailability = async (req, res) => {
   try {
     const { user_id } = req.params;
     const [result] = await pool.query(
-      "SELECT * FROM availability WHERE user_id = ?",
+      "SELECT * FROM availability WHERE user_id = ? AND active = 1",
       [user_id]
     );
     if (result.length > 0) {
@@ -74,7 +74,7 @@ export const deleteAvailability = async (req, res) => {
   try {
     const { availability_id } = req.params;
 
-    await pool.query("DELETE FROM availability WHERE availability_id = ?", [
+    await pool.query("UPDATE availability SET active = 0 WHERE availability_id = ?", [
       availability_id,
     ]);
 

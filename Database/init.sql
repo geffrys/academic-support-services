@@ -105,6 +105,7 @@ CREATE TABLE availability(
     availability_day VARCHAR(20) NOT NULL,
     availability_start_time TIME NOT NULL,
     availability_end_time TIME NOT NULL,
+    active TINYINT(1) NOT NULL DEFAULT 1,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES  users(user_id) 
 );

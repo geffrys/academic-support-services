@@ -5,6 +5,7 @@ import AvailabilityInfo from "../components/Availabilityinfo";
 import NewAvailability from "../components/NewAvailability";
 import { useAuth } from "../context/AuthContext";
 import "../css/Availability.css";
+import { set } from "react-hook-form";
 
 function Availability() {
   const { user } = useAuth();
@@ -25,15 +26,28 @@ function Availability() {
             <div className="availability_day">
               <p>Monday</p>
               <button
+              type="button"
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Monday");
+                  isEdit === "Monday" ? setEdit(false) : setEdit("Monday");
                 }}
               >
-                ➕
+                {isEdit === "Monday" ? "✖️" : "➕"}
               </button>
             </div>
-            <AvailabilityInfo userAvailability={userAvailability} day="Lunes" />
+            <AvailabilityInfo
+              userAvailability={userAvailability}
+              day="Monday"
+            />
+            {isEdit === "Monday" ? (
+              <NewAvailability
+                userId={userId}
+                isEdit={isEdit}
+                setEdit={setEdit}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div>
             <div className="availability_day">
@@ -41,10 +55,10 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Tuesday");
+                  isEdit === "Tuesday" ? setEdit(false) : setEdit("Tuesday");
                 }}
               >
-                ➕
+                {isEdit === "Tuesday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo
@@ -68,10 +82,12 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Wednesday");
+                  isEdit === "Wednesday"
+                    ? setEdit(false)
+                    : setEdit("Wednesday");
                 }}
               >
-                ➕
+                {isEdit === "Wednesday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo
@@ -95,10 +111,10 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Thursday");
+                  isEdit === "Thursday" ? setEdit(false) : setEdit("Thursday");
                 }}
               >
-                ➕
+                {isEdit === "Thursday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo
@@ -122,10 +138,10 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Friday");
+                  isEdit === "Friday" ? setEdit(false) : setEdit("Friday");
                 }}
               >
-                ➕
+                {isEdit === "Friday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo
@@ -149,10 +165,10 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Saturday");
+                  isEdit === "Saturday" ? setEdit(false) : setEdit("Saturday");
                 }}
               >
-                ➕
+                {isEdit === "Saturday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo
@@ -175,10 +191,10 @@ function Availability() {
               <button
                 className="availabilityPrimary_btn"
                 onClick={() => {
-                  setEdit("Sunday");
+                  isEdit === "Sunday" ? setEdit(false) : setEdit("Sunday");
                 }}
               >
-                ➕
+                {isEdit === "Sunday" ? "✖️" : "➕"}
               </button>
             </div>
             <AvailabilityInfo

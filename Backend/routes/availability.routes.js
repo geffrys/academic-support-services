@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/:user_id", getUserAvailability);
 router.post("/", newAvailability);
-router.put("/edit/:availability_id", editAvailability);
-router.delete("/delete/:availability_id", deleteAvailability);
+router.put("/:availability_id", editAvailability);
+router.delete("/:availability_id", deleteAvailability);
 
 export default router;
