@@ -1,11 +1,9 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import useAvailability from "../Hooks/useAvailability";
 import AvailabilityInfo from "../components/Availabilityinfo";
 import NewAvailability from "../components/NewAvailability";
 import { useAuth } from "../context/AuthContext";
 import "../css/Availability.css";
-import { set } from "react-hook-form";
 
 function Availability() {
   const { user } = useAuth();
