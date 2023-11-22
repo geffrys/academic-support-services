@@ -17,7 +17,7 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
   } = useForm();
 
   useEffect(() => {
-    if (!userAvailability.loading && userAvailability.availability !== null) {
+    if (!userAvailability.loading && userAvailability.availability !== undefined) {
       const filteredItems = userAvailability.filter(
         (item) => item.availability_day === day
       );
