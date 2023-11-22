@@ -5,4 +5,4 @@ export const Deleterequest = async (session_id) => {
 };
 
 export const postSessions = async (session) =>
-    await axios.post(`http://localhost:3000/api/v1/sessions`, session);
+-    await axios.post(`http://localhost:3000/api/v1/sessions`, session);
