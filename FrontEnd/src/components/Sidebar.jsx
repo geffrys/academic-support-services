@@ -45,12 +45,17 @@ function Sidebar() {
         >
           Home
         </li>
-        <li className="sidebar__li">Schedule</li>
-        <li className="sidebar__li">History</li>
-        <li className="sidebar__li">Contacts</li>
         <li className="sidebar__li" onClick={() => {
-          navigate("/availability");
-        }}>Configure Availability</li>
+            navigate("/appointments");
+          }}>Appointments</li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/availability");
+          }}
+        >
+          Availability
+        </li>
         <li
           className="sidebar__li"
           onClick={() => {
@@ -58,12 +63,6 @@ function Sidebar() {
           }}
         >
           Profile
-        </li>
-        <li className="sidebar__li"
-          onClick={() => {
-            navigate("/classes");
-          }}>
-          Service
         </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>

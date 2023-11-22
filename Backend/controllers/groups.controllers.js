@@ -33,8 +33,6 @@ export const getGroupById = async (req, res) => {
 export const enrollGroup = async (req, res) => {
     try {
         const [count] = await pool.query("SELECT COUNT(*) FROM student_groups WHERE group_id = ?", [req.body.group_id]);
-        // if count > 5 return cannot enroll
-        console.log(count[0]['COUNT(*)']);
         if (count[0]['COUNT(*)'] >= MAXGROUPSIZE) {
             throw new Error("Group is full");
         }

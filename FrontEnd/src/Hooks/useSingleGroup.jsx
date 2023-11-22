@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getGroups } from "../api/groups.api";
+import { getGroups } from "../api/singlegroups.api";
 
-const useGroups = () => {
+const useSingleGroups = () => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
@@ -11,8 +11,8 @@ const useGroups = () => {
     };
     getGroups_();
   }, []);
-
+  
   return groups;
 };
 
-export default useGroups;
+export default useSingleGroups;

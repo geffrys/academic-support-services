@@ -13,7 +13,6 @@ export const postSessions = async (req, res) => {
     const { session_duration } = req.body;
     let endDateTime = new Date(req.body.session_entry_date);    
     endDateTime.setMinutes(endDateTime.getMinutes() + Number(session_duration));
-    console.log(endDateTime);
     try {
         const [result] = await pool.query("INSERT INTO session (session_type_id, session_entry_date, session_exit_date, user_id, teacher_id, topic_id) VALUES (?, ?, ?, ?, ?, ?)", [
             req.body.session_type_id,
