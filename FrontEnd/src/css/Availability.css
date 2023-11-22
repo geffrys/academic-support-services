@@ -11,12 +11,11 @@
   width: fit-content;
   align-items: center;
   border-radius: 3rem;
-  height: 90rem;
+  height: fit-content;
   flex-direction: column;
   padding: 3rem 3rem 5rem 3rem;
   border: 3px solid var(--third-color);
   background-color: var(--background-color-dark);
-  
   overflow: auto;
 }
 
