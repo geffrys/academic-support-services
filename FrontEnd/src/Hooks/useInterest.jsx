@@ -13,7 +13,8 @@ function useInterest() {
       "History",
       "Politics",
       "Literature",
-      "Movies"
+      "Movies",
+      "Programming",
     ]);
   }, []);
 

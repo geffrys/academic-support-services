@@ -37,10 +37,25 @@ function Sidebar() {
       </h1>
       <p className="sidebar__subtitle">{userType}</p>
       <ul>
-        <li className="sidebar__li">Home</li>
-        <li className="sidebar__li">Schedule</li>
-        <li className="sidebar__li">History</li>
-        <li className="sidebar__li">Contacts</li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Home
+        </li>
+        <li className="sidebar__li" onClick={() => {
+            navigate("/appointments");
+          }}>Appointments</li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/availability");
+          }}
+        >
+          Availability
+        </li>
         <li
           className="sidebar__li"
           onClick={() => {
