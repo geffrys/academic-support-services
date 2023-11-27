@@ -1,0 +1,29 @@
+.invitation__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation__section input {
+  color: white;
+  padding-left: 1rem;
+  width: 29.8rem;
+  height: 5rem;
+  border-radius: 2.2rem;
+  background: var(--background-color);
+  border: none;
+}
+
+.invitation__active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+  opacity: 1;
+  gap: 1rem;
+}
+
+.invitation__hidden {
+  pointer-events: none;
+  opacity: 0;
+}

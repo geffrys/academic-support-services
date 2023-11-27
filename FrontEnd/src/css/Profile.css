@@ -96,3 +96,19 @@
   border-radius: 20px;
   margin: 0px 5px;
 }
+.profile__undersection{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.profile_button {
+  cursor: pointer;
+  width: 14rem;
+  height: 4.4rem;
+  border-radius: 2.2rem;
+  border: 1px solid #5cc59e;
+  background: #67f494;
+  font-weight: 600;
+}
