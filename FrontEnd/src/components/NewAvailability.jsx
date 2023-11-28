@@ -74,9 +74,9 @@ function NewAvailability({ userId, isEdit, setEdit }) {
       <form action="" onSubmit={onSubmitCreate}>
         <div className="availability_day_item">
           <div>
-            De :
+            Start :
             <input type="time" {...register("availability_start_time")} />
-            Hasta :
+            Finish :
             <input type="time" {...register("availability_end_time")} />
           </div>
           <button type="submit" className="availabilityPrimary_btn">

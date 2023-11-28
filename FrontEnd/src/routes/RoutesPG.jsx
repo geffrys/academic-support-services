@@ -7,13 +7,15 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Classes from "../pages/Classes";
 import Availability from "../pages/Availability";
-import Appintments from '../pages/Appointments'
+import Appintments from "../pages/Appointments";
+import LandingPage from "../pages/LandingPage";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
   return (
     <Routes>
-      <Route path="/" element={!isAuthenticated ? <LogIn /> : <Home />} />
+      <Route path="/" element={!isAuthenticated ? <LandingPage /> : <Home />} />
+      <Route path="/login" element={!isAuthenticated ? <LogIn /> : <Home />} />
       <Route path="*" element={isAuthenticated && <NotFound />} />
       <Route path="/recover" element={!isAuthenticated && <Recover />} />
       <Route
@@ -21,9 +23,18 @@ function RoutesPG() {
         element={!isAuthenticated && <Recover />}
       />
       <Route path="/recover" element={!isAuthenticated && <Recover />}></Route>
-      <Route path="/profile" element={isAuthenticated? <Profile/> : <LogIn />}></Route>
-      <Route path="/appointments" element={isAuthenticated? <Appintments/> : <LogIn />}></Route>
-      <Route path="/classes" element={isAuthenticated ? <Classes />: <LogIn />}></Route>
+      <Route
+        path="/profile"
+        element={isAuthenticated ? <Profile /> : <LogIn />}
+      ></Route>
+      <Route
+        path="/appointments"
+        element={isAuthenticated ? <Appintments /> : <LogIn />}
+      ></Route>
+      <Route
+        path="/classes"
+        element={isAuthenticated ? <Classes /> : <LogIn />}
+      ></Route>
       <Route
         path="/availability"
         element={isAuthenticated ? <Availability /> : <LogIn />}

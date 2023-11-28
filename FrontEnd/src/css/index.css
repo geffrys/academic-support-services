@@ -18,7 +18,7 @@ main {
 
 .content{
   display: flex;
-  height: calc(100vh - 45px);
+  height: calc(100vh - 47px);
 }
 
 .each_page {

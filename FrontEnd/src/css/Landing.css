@@ -1,0 +1,93 @@
+.landing {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--background-color-dark),
+    var(--background-color),
+    var(--third-color)
+  );
+  max-height: 100vh;
+}
+
+.landing__box {
+  display: flex;
+}
+.landing__nav {
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary-color),
+    var(--background-color)
+  );
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.landing__nav figure {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.landing__logo {
+  width: 6rem;
+}
+
+.landing_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 4rem;
+}
+
+.landing_h1 {
+  color: #fff;
+  font-size: 4rem;
+  text-shadow: 0.5rem 0.5rem 0.7rem var(--secondary-color);
+  width: fit-content;
+  border-bottom: 0.2rem solid #fff;
+  margin-bottom: 4rem;
+  margin-left: 4rem;
+  transition: 2s;
+}
+
+.landing_p {
+  color: #fff;
+  font-size: 2rem;
+  transition: 2s;
+  max-width: 60%;
+  margin-bottom: 3rem;
+}
+
+.landing_p:hover {
+  transition: 1s;
+  font-size: 2.5rem;
+  text-shadow: 0.2rem 0.2rem 0.4rem var(--primary-color);
+  border-left: 0.4rem solid var(--primary-color);
+  padding-left: 2rem;
+}
+
+.landing_h1:hover {
+  transition: 1s;
+  font-size: 4.5rem;
+  text-shadow: 0.2rem 0.2rem 0.4rem #fff;
+}
+
+figcaption {
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+.carousel__img {
+  width: 5rem;
+}
+
+.landing_carrousel {
+  background-color: red;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
