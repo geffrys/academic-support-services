@@ -114,7 +114,7 @@ function Recover() {
           color: "var(--primary-color)",
         },
       });
-      setTimeout(() => {navigate("/")}, 3000);
+      setTimeout(() => {navigate("/login")}, 3000);
     }
   });
 

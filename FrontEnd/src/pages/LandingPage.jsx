@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import LOGO from "../img/LOGO.png";
 import JAVA from "../img/java.png";
 import JAVASCRIPT from "../img/Javascript.png";
@@ -7,12 +8,10 @@ import PHP from "../img/php.png";
 import PYTHON from "../img/python.png";
 import HTML from "../img/html-5.png";
 import CSS from "../img/css-3.png";
-import RUBY from '../img/ruby.png'
+import RUBY from "../img/ruby.png";
 import REACT from "../img/react.png";
-import SQL from '../img/sql-server.png'
-
+import SQL from "../img/sql-server.png";
 import "../css/Landing.css";
-import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
   const navigate = useNavigate();
