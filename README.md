@@ -15,8 +15,8 @@ Crear un sistema de agendamiento que maneje el crear, ver, modificar y borrar so
 
 
 ## EJEMPLOS DEL PROYECTO
-![ejemplo1](ejemplo 1.png)
-![ejemplo2](ejemplo 2.png)
+[![[ejemplo 1](ejemplo 1.png)](https://github.com/geffrys/academic-support-services/blob/ce7743929ae2173b1008546fbd13a1503c531239/ejemplo%201.png)](https://github.com/geffrys/academic-support-services/blob/ce7743929ae2173b1008546fbd13a1503c531239/ejemplo%201.png)
+![[ejemplo 2](ejemplo 2.png)](https://github.com/geffrys/academic-support-services/blob/ce7743929ae2173b1008546fbd13a1503c531239/ejemplo%202.png)
 
 ## OBJETIVO DEL PROYECTO
 Este proyecto fue contruido con fines Educativos e institucionales, fue construido como parcial final de la materia Proyecto de construcción de software de la universidad Politecnico Jaime Izasa Cadavid
