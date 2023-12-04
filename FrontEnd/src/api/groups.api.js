@@ -1,7 +1,15 @@
 import axios from "axios";
 
+export const getGroupsFiltered = async (id) => {
+    console.log(id);
+    if(!id){
+        return {data:[]};
+    }
+    return await axios.get(`http://localhost:3000/api/v1/users/teachers/${id}/groups`);
+}
+
 export const getGroups = async () => {
-    return await axios.get(`http://localhost:3000/api/v1/groups`);
+    return await axios.get(`http://localhost:3000/api/v1/groups/`);
 }
 
 export const postGroups = async (group) =>{
