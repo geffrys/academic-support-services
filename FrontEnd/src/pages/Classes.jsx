@@ -91,6 +91,17 @@ function Classes() {
       }
     } else {
       let valid = true;
+      if(data.teacher_id == user.id){
+        toast.error("You can't enroll to your own class", {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        });
+        valid = false;
+        return;
+      }
       if (data.session_type_id == "") {
         toast.error("Please select a session type", {
           style: {
