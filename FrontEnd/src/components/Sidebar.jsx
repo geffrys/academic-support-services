@@ -65,7 +65,18 @@ function Sidebar() {
         ) : (
           ""
         )}
-
+        {userType === "Admin" ? (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate("/team");
+            }}
+          >
+            Team
+          </li>
+        ) : (
+          ""
+        )}
         <li
           className="sidebar__li"
           onClick={() => {

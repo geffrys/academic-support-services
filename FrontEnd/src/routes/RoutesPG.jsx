@@ -8,6 +8,7 @@ import Profile from "../pages/Profile";
 import Classes from "../pages/Classes";
 import Availability from "../pages/Availability";
 import Appintments from "../pages/Appointments";
+import Team from "../pages/Team";
 
 function RoutesPG() {
   const { isAuthenticated, user } = useAuth();
@@ -39,6 +40,20 @@ function RoutesPG() {
           isAuthenticated ? (
             user.user_type === 2 ? (
               <Availability />
+            ) : (
+              <NotFound />
+            )
+          ) : (
+            <LogIn />
+          )
+        }
+      ></Route>
+      <Route
+        path="/team"
+        element={
+          isAuthenticated ? (
+            user.user_type === 1 ? (
+              <Team />
             ) : (
               <NotFound />
             )

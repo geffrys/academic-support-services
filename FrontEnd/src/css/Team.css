@@ -1,0 +1,76 @@
+.team {
+  display: flex;
+  margin-top: 3%;
+  justify-content: center;
+}
+
+.team_container {
+  display: flex;
+  width: fit-content;
+  max-width: 60vw;
+  align-items: center;
+  border-radius: 3rem;
+  height: fit-content;
+  flex-direction: column;
+  padding: 3rem 3rem 5rem 3rem;
+  border: 3px solid var(--third-color);
+  background-color: var(--background-color-dark);
+}
+
+.teamTitle_container > h2 {
+  width: 50vw;
+  color: white;
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 60px;
+  border-bottom: 3px solid var(--third-color);
+}
+
+.team_content_container {
+  gap: 1rem;
+  display: flex;
+  color: white;
+  font-size: 2.3rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.teachers {
+  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.teacher_container {
+  display: flex;
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+  border-radius: 3rem;
+  height: fit-content;
+  flex-direction: column;
+  padding: 3rem 3rem 5rem 3rem;
+  border: 3px solid var(--third-color);
+  background-color: var(--background-color);
+}
+
+.teamPrimary_btn {
+  height: 4rem;
+  font-size: 2rem;
+  width: fit-content;
+  padding: 1rem 1rem;
+  border-radius: 1rem;
+  background-color: var(--primary-color);
+}
+
+.teamSecundary_btn {
+    height: 4rem;
+    color: white;
+    font-size: 2rem;
+    padding: 1rem 1rem;
+    width: fit-content;
+    border-radius: 1rem;
+    background-color: var(--third-color);
+}
