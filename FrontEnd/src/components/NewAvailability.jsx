@@ -58,7 +58,13 @@ function NewAvailability({ userId, isEdit, setEdit }) {
         }, 2000);
         return res;
       } catch (error) {
-        console.log(error);
+        toast.error("Error, make sure that the availability does not exit for this day", {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        });
       }
     }
   });

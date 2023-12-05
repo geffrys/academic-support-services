@@ -83,7 +83,6 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
       setIsEditItem(false);
       setAvailabilityId(null);
 
-      
       setAvailabilityList((prevList) =>
         prevList.map((item) => {
           if (item.availability_id === availabilityId) {
@@ -99,7 +98,16 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
 
       reset();
     } catch (error) {
-      console.log(error);
+      toast.error(
+        "Error, make sure that the availability does not exit for this day",
+        {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        }
+      );
     }
   });
 

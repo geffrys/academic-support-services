@@ -26,6 +26,24 @@ export const newAvailability = async (req, res) => {
       user_id,
     } = req.body;
 
+    const overlap = await pool.query(
+      "SELECT * FROM availability WHERE availability_day = ? AND user_id = ? AND active = 1 AND ((availability_start_time <= ? AND availability_end_time > ?) OR (availability_start_time < ? AND availability_end_time >= ?) OR (availability_start_time >= ? AND availability_end_time <= ?))",
+      [
+        availability_day,
+        user_id,
+        availability_start_time,
+        availability_start_time,
+        availability_end_time,
+        availability_end_time,
+        availability_start_time,
+        availability_end_time,
+      ]
+    );
+
+    if (overlap[0].length > 0) {
+      return res.status(400).json({ message: "Availability overlap" });
+    }
+
     await pool.query(
       "insert into availability (availability_day, availability_start_time, availability_end_time, user_id) values (?,?,?,?)",
       [
@@ -55,6 +73,24 @@ export const editAvailability = async (req, res) => {
     if (results.length === 0)
       return res.status(404).json({ message: "Availability item not found" });
 
+    const overlap = await pool.query(
+      "SELECT * FROM availability WHERE availability_day = ? AND user_id = ? AND active = 1 AND ((availability_start_time <= ? AND availability_end_time > ?) OR (availability_start_time < ? AND availability_end_time >= ?) OR (availability_start_time >= ? AND availability_end_time <= ?))",
+      [
+        availability_day,
+        user_id,
+        availability_start_time,
+        availability_start_time,
+        availability_end_time,
+        availability_end_time,
+        availability_start_time,
+        availability_end_time,
+      ]
+    );
+
+    if (overlap[0].length > 0) {
+      return res.status(400).json({ message: "Availability overlap" });
+    }
+
     await pool.query(
       "UPDATE availability SET availability_day = ?, availability_start_time = ?, availability_end_time = ? WHERE availability_id = ?",
       [
@@ -74,9 +110,10 @@ export const deleteAvailability = async (req, res) => {
   try {
     const { availability_id } = req.params;
 
-    await pool.query("UPDATE availability SET active = 0 WHERE availability_id = ?", [
-      availability_id,
-    ]);
+    await pool.query(
+      "UPDATE availability SET active = 0 WHERE availability_id = ?",
+      [availability_id]
+    );
 
     res.status(200).send({ message: "Availability deleted successfully" });
   } catch (error) {
