@@ -3,6 +3,6 @@ import { getTeam} from '../controllers/team.controllers.js';
 
 const router = Router();
 
-router.get("/", getTeam);
+router.get("/:admin_id", getTeam);
 
 export default router;

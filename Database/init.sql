@@ -52,6 +52,20 @@ CREATE TABLE teachers(
     FOREIGN KEY (teacher_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE team(
+	team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	admin_id INT NOT NULL,
+    FOREIGN KEY (admin_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE teacher_team(
+	teacher_team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    teacher_id INT NOT NULL,
+    FOREIGN KEY (team_id) REFERENCES users(user_id),
+	FOREIGN KEY (teacher_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE knowledges(
     knowledge_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     active TINYINT(1) NOT NULL DEFAULT 1,
@@ -134,6 +148,8 @@ INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('College ID', '
 INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('Country ID', '1');
 INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('University ID', '1');
 INSERT INTO user_id_type (`user_id_type_name`, `active`) VALUES ('Passport ID', '1');
+
+insert into team (admin_id) values (1);
 
 
 -- ALTERS
