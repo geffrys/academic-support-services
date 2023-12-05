@@ -1,4 +1,5 @@
 import { pool} from "../db.js";
+import emailjs from "@emailjs/browser";
 
 const MAXGROUPSIZE = 5;
 
@@ -37,6 +38,7 @@ export const enrollGroup = async (req, res) => {
             throw new Error("Group is full");
         }
         const [result] = await pool.query("INSERT INTO student_groups (group_id, user_id) VALUES (?, ?)", [req.body.group_id, req.body.user_id]);
+        
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });

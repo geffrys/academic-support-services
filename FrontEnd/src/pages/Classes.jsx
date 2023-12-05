@@ -11,6 +11,8 @@ import { postGroups } from "../api/groups.api.js";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getGroupsFiltered } from "../api/groups.api";
+import { getTeachers, getTeacherById } from "../api/teachers.api.js";
+import emailjs from "@emailjs/browser";
 
 
 function Classes() {
@@ -63,15 +65,31 @@ function Classes() {
     setSelectedTeacher(teacherId);
     console.log("target value", e.target.value);
     if (teacherId == "") {
-      console.log("teacher id is empty");      
+      console.log("teacher id is empty");
       setSelectedTeacher(null);
       setValue("group_id", "");
       setValue("teacher_id", "");
       return;
     }
     setValue("teacher_id", teacherId);
-    
+
   };
+
+  async function sendmail(sessionType, teacherId) {
+    let teacherSelected = await getTeacherById(teacherId);
+    console.log(teacherSelected);
+    await emailjs.send(
+      'service_v8i3rdn',
+      'template_r5loxsm',
+      {
+        sessionType: sessionType,
+        message: "You have a new student in your group",
+        reply_to: "geffry.ospina@gmail.com",
+        to_email: teacherSelected.data.user_email,
+      },
+      'mabLzkkZ2FGe4CIl9'
+    )
+  }
 
   const onSubmit = handleSubmit(async (data) => {
     if (data.session_type_id == SESSION_TYPE_GROUP) {
@@ -96,7 +114,7 @@ function Classes() {
         });
         valid = false;
       }
-      if(data.teacher_id == "") {
+      if (data.teacher_id == "") {
         toast.error("Please select a teacher", {
           style: {
             borderRadius: "10px",
@@ -131,9 +149,10 @@ function Classes() {
               color: "var(--primary-color)",
             },
           });
+          sendmail("group", data.teacher_id);
           setTimeout(() => { navigate("/appointments") }, 3000);
         } catch (error) {
-          toast.error(error.response.data.message)
+          toast.error(error.message)
         }
       }
     } else {
@@ -226,6 +245,7 @@ function Classes() {
               color: "var(--primary-color)",
             },
           });
+          sendmail("class", data.teacher_id);
           setTimeout(() => { navigate("/appointments") }, 3000);
         } catch (error) {
           toast.error(error.response.data.message)
