@@ -45,17 +45,27 @@ function Sidebar() {
         >
           Home
         </li>
-        <li className="sidebar__li" onClick={() => {
-            navigate("/appointments");
-          }}>Appointments</li>
         <li
           className="sidebar__li"
           onClick={() => {
-            navigate("/availability");
+            navigate("/appointments");
           }}
         >
-          Availability
+          Appointments
         </li>
+        {userType === "Teacher" ? (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate("/availability");
+            }}
+          >
+            Availability
+          </li>
+        ) : (
+          ""
+        )}
+
         <li
           className="sidebar__li"
           onClick={() => {
