@@ -1,11 +1,31 @@
 import { useEffect, useState } from "react";
 import useTeacherTeam from "../Hooks/useTeacherTeam";
-
 import "../css/Team.css";
+import { deleteTeacherTeam } from "../api/teacherTeam.api";
+import toast from "react-hot-toast";
 
 function TeamInfo({ team_id, teachers }) {
   const [teachers_id, setTeachers_id] = useState(null);
   const teacherTeam = useTeacherTeam(team_id);
+
+  const onDelete = async (team_id, teacher_id) => {
+    try {
+      await deleteTeacherTeam(team_id, teacher_id);
+      toast.success("Availability deleted successfully", {
+        style: {
+          borderRadius: "10px",
+          background: "var(--background-color-dark)",
+          color: "var(--primary-color)",
+        },
+      });
+      setTimeout(() => {
+        setEdit(false);
+      }, 3000);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (teacherTeam && teacherTeam.length > 0) {
@@ -28,7 +48,11 @@ function TeamInfo({ team_id, teachers }) {
                   <button type="button" className="teamPrimary_btn">
                     See Availability
                   </button>
-                  <button type="button" className="teamSecundary_btn">
+                  <button
+                    type="button"
+                    className="teamSecundary_btn"
+                    onClick={() => onDelete(team_id, t.user_id)}
+                  >
                     Remove teacher
                   </button>
                 </div>

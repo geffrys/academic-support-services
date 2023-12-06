@@ -10,3 +10,9 @@ export const newTeacherTeam = async (teacherTeam) => {
     teacherTeam
   );
 };
+
+export const deleteTeacherTeam = async (team_id, teacher_id) => {
+  return await axios.delete(
+    `http://localhost:3000/api/v1/team/teacherTeam/${team_id}/${teacher_id}`
+  );
+}

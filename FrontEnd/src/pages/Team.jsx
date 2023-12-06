@@ -23,18 +23,37 @@ function Team() {
   if (!team[0]) {
     return <p>Loading team information...</p>;
   }
-  
+
   setValue("team_id", team[0].team_id);
   const onSubmitEdit = handleSubmit(async (data) => {
     try {
       if (data.teacher_id !== "") {
-
         await newTeacherTeam(data);
         setIsEdit(false);
+        toast.success("Teacher added successfully", {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        });
+        setTimeout(() => {
+          setEdit(false);
+        }, 3000);
+        window.location.reload();
+      }
+      if (data.teacher_id === "") {
+        toast.error("Please select a teacher", {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        });
       }
     } catch (error) {
       setIsEdit(false);
-      toast.error("Error adding teacher", {
+      toast.error("That teacher is already in the team", {
         style: {
           borderRadius: "10px",
           background: "var(--background-color-dark)",
@@ -74,7 +93,11 @@ function Team() {
               <button className="teamPrimary_btn" type="submit">
                 Submit
               </button>
-              <button className="teamSecundary_btn" type="button" onClick={() => setIsEdit(false)}>
+              <button
+                className="teamSecundary_btn"
+                type="button"
+                onClick={() => setIsEdit(false)}
+              >
                 Cancel
               </button>
             </form>
