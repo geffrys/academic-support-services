@@ -99,12 +99,13 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
       reset();
     } catch (error) {
       toast.error(
-        "Error, make sure that the availability does not exit for this day",
+        "Error when creating the availabily information, please review the credentials",
         {
           style: {
             borderRadius: "10px",
             background: "var(--background-color-dark)",
             color: "var(--primary-color)",
+            textAlign: "center"
           },
         }
       );

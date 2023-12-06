@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import "../css/Profile.css";
 import EditUser from "../components/EditUser";
 import UserProfileInfo from "../components/UserProfileInfo";
-import Invitation from '../components/Invitation'
+import Invitation from "../components/Invitation";
 
 function Profile() {
   const { user } = useAuth();
@@ -41,23 +41,25 @@ function Profile() {
           </article>
         </section>
         <section className="profile__undersection">
-        <div className="profile__button">
-          {!isEdit ? (
-            <button
-              className="profile_button"
-              onClick={() => {
-                setEdit(!isEdit);
-              }}
-            >
-              Edit profile
-            </button>
-          ) : (
-            ""
+          <div className="profile__button">
+            {!isEdit ? (
+              <button
+                className="profile_button"
+                onClick={() => {
+                  setEdit(!isEdit);
+                }}
+              >
+                Edit profile
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+          {!isEdit && (
+            <div>
+              <Invitation />
+            </div>
           )}
-        </div>
-        <div>
-          <Invitation />
-        </div>
         </section>
       </section>
     </section>

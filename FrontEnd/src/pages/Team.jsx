@@ -29,7 +29,6 @@ function Team() {
     try {
       if (data.teacher_id !== "") {
         await newTeacherTeam(data);
-        setIsEdit(false);
         toast.success("Teacher added successfully", {
           style: {
             borderRadius: "10px",
@@ -38,9 +37,9 @@ function Team() {
           },
         });
         setTimeout(() => {
-          setEdit(false);
+          setIsEdit(false);
+          window.location.reload();
         }, 3000);
-        window.location.reload();
       }
       if (data.teacher_id === "") {
         toast.error("Please select a teacher", {
@@ -87,20 +86,22 @@ function Team() {
                   <option value="">Select</option>
                   {teachers.map((teacher, index) => (
                     <option value={teacher.user_id} key={index}>
-                      {teacher.user_name}
+                      {teacher.user_name + " " + teacher.user_last_name}
                     </option>
                   ))}
                 </select>
-                <button className="teamPrimary_btn" type="submit">
-                  Submit
-                </button>
-                <button
-                  className="teamSecundary_btn"
-                  type="button"
-                  onClick={() => setIsEdit(false)}
-                >
-                  Cancel
-                </button>
+                <div className="team__bttns">
+                  <button className="teamPrimary_btn" type="submit">
+                    Submit
+                  </button>
+                  <button
+                    className="teamSecundary_btn"
+                    type="button"
+                    onClick={() => setIsEdit(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </form>
           )}

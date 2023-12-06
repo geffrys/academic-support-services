@@ -20,9 +20,9 @@ function TeamInfo({ team_id, teachers }) {
         },
       });
       setTimeout(() => {
+        window.location.reload();
         setEdit(false);
       }, 3000);
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }

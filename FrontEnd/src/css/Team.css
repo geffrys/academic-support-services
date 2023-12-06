@@ -92,3 +92,8 @@
   width: 100%;
   text-align: center;
 }
+.team__bttns{
+  display: flex;
+  margin-top: 1rem;
+  gap: 2rem;
+}
