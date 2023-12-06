@@ -11,7 +11,18 @@ export const getTeachers = async (req, res) => {
 
 export const getTeacherById = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT * FROM users WHERE id = ?", [req.params.id]);
+        const [result] = await pool.query("SELECT * FROM users WHERE user_id = ?", [req.params.id]);
+        result[0].password = undefined;
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const getTeacherGroupsById = async (req, res) => {
+    try {
+        
+        const [result] = await pool.query("SELECT * FROM groups_ WHERE user_id = ?", [Number(req.params.id)]);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });

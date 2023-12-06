@@ -14,6 +14,14 @@ export const postSessions = async (req, res) => {
     let endDateTime = new Date(req.body.session_entry_date);    
     endDateTime.setMinutes(endDateTime.getMinutes() + Number(session_duration));
     try {
+
+        const [sesionExists] = await pool.query("SELECT * FROM session WHERE session_entry_date = ? AND user_id = ?",[
+            req.body.session_entry_date,
+            req.body.user_id
+        ])
+        if(sesionExists.length > 0){
+            return res.status(400).json({ message: "The user already has a session at this time" });
+        }
         const [result] = await pool.query("INSERT INTO session (session_type_id, session_entry_date, session_exit_date, user_id, teacher_id, topic_id) VALUES (?, ?, ?, ?, ?, ?)", [
             req.body.session_type_id,
             req.body.session_entry_date,

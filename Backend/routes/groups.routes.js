@@ -8,4 +8,5 @@ router.post("/", postGroups);
 router.post("/enroll", enrollGroup);
 router.get("/:id", getGroupById);
 
+
 export default router;

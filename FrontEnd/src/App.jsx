@@ -2,6 +2,7 @@ import Footer from "./components/Footer";
 import RoutesPG from "./routes/RoutesPG";
 import Sidebar from "./components/Sidebar";
 import { useAuth } from "./context/AuthContext";
+import WhatsappButton from "./components/WhatsappButton";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -13,6 +14,7 @@ function App() {
           <RoutesPG />
         </section>
       </section>
+      <WhatsappButton />
       <Footer />
     </main>
   );

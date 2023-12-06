@@ -9,7 +9,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const onClick = () => {
     logOut();
-    navigate("/");
+    navigate("/login");
   };
 
   const [userType, setUserType] = useState("");
@@ -45,17 +45,50 @@ function Sidebar() {
         >
           Home
         </li>
-        <li className="sidebar__li" onClick={() => {
-            navigate("/appointments");
-          }}>Appointments</li>
         <li
           className="sidebar__li"
           onClick={() => {
-            navigate("/availability");
+            navigate("/appointments");
           }}
         >
-          Availability
+          Appointments
         </li>
+        {userType === "Teacher" ? (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate(`/availability/${user.id}`);
+            }}
+          >
+            Availability
+          </li>
+        ) : (
+          ""
+        )}
+        {userType === "Admin" ? (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate("/team");
+            }}
+          >
+            Team
+          </li>
+        ) : (
+          ""
+        )}
+        {userType === "Admin" ? (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate("/groups");
+            }}
+          >
+            Groups
+          </li>
+        ) : (
+          ""
+        )}
         <li
           className="sidebar__li"
           onClick={() => {

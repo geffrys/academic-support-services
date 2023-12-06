@@ -58,7 +58,13 @@ function NewAvailability({ userId, isEdit, setEdit }) {
         }, 2000);
         return res;
       } catch (error) {
-        console.log(error);
+        toast.error("Error, make sure that the availability does not exit for this day", {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+          },
+        });
       }
     }
   });
@@ -74,9 +80,9 @@ function NewAvailability({ userId, isEdit, setEdit }) {
       <form action="" onSubmit={onSubmitCreate}>
         <div className="availability_day_item">
           <div>
-            De :
+            From :
             <input type="time" {...register("availability_start_time")} />
-            Hasta :
+            To :
             <input type="time" {...register("availability_end_time")} />
           </div>
           <button type="submit" className="availabilityPrimary_btn">

@@ -8,6 +8,8 @@ import availabilityRoutes from "./availability.routes.js";
 import sessionTypesRoutes from "./session_type.routes.js";
 import groupsRoutes from "./groups.routes.js";
 import singleGroup from './singlegroup.routes.js'
+import teamRoutes from "./team.routes.js";
+import teacherTeam from "./teacher_team.routes.js";
 
 const router = Router();
 
@@ -20,6 +22,7 @@ router.use("/singlegroup", singleGroup);
 router.use("/sessions", SessionRoutes);
 router.use("/topics", topicsRoutes);
 router.use("/availability", availabilityRoutes);
+router.use("/team", teamRoutes);
 
 
 export default router;

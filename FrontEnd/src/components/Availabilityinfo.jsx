@@ -83,7 +83,6 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
       setIsEditItem(false);
       setAvailabilityId(null);
 
-      
       setAvailabilityList((prevList) =>
         prevList.map((item) => {
           if (item.availability_id === availabilityId) {
@@ -99,7 +98,17 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
 
       reset();
     } catch (error) {
-      console.log(error);
+      toast.error(
+        "Error when creating the availabily information, please review the credentials",
+        {
+          style: {
+            borderRadius: "10px",
+            background: "var(--background-color-dark)",
+            color: "var(--primary-color)",
+            textAlign: "center"
+          },
+        }
+      );
     }
   });
 
@@ -110,9 +119,9 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
         <form onSubmit={onSubmitEdit}>
           <div className="availability_day_item">
             <div>
-              De :{" "}
+              From :{" "}
               <input type="time" {...register("availability_start_time")} />
-              Hasta :{" "}
+              To :{" "}
               <input type="time" {...register("availability_end_time")} />
             </div>
             <div>
@@ -134,7 +143,7 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
         availabilityList.map((item) => (
           <div key={item.availability_id} className="availability_day_item">
             <p>
-              De: {item.availability_start_time} - Hasta:{" "}
+              From: {item.availability_start_time} - To:{" "}
               {item.availability_end_time}
             </p>
             <div>
