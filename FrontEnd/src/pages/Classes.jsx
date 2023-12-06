@@ -14,7 +14,6 @@ import { getGroupsFiltered } from "../api/groups.api";
 import { getTeachers, getTeacherById } from "../api/teachers.api.js";
 import emailjs from "@emailjs/browser";
 
-
 function Classes() {
   const SESSION_TYPE_GROUP = 1;
 
@@ -28,8 +27,6 @@ function Classes() {
   const sessionTypes = useSessionType();
   const teachers = useTeacher();
   const [groups, setGroups] = useState([]);
-
-
 
   const navigate = useNavigate();
 
@@ -72,23 +69,22 @@ function Classes() {
       return;
     }
     setValue("teacher_id", teacherId);
-
   };
 
   async function sendmail(sessionType, teacherId) {
     let teacherSelected = await getTeacherById(teacherId);
     console.log(teacherSelected);
     await emailjs.send(
-      'service_v8i3rdn',
-      'template_r5loxsm',
+      "service_v8i3rdn",
+      "template_r5loxsm",
       {
         sessionType: sessionType,
         message: "You have a new student in your group",
         reply_to: "geffry.ospina@gmail.com",
         to_email: teacherSelected.data.user_email,
       },
-      'mabLzkkZ2FGe4CIl9'
-    )
+      "mabLzkkZ2FGe4CIl9"
+    );
   }
 
   const onSubmit = handleSubmit(async (data) => {
@@ -150,9 +146,11 @@ function Classes() {
             },
           });
           sendmail("group", data.teacher_id);
-          setTimeout(() => { navigate("/appointments") }, 3000);
+          setTimeout(() => {
+            navigate("/appointments");
+          }, 3000);
         } catch (error) {
-          toast.error(error.message)
+          toast.error(error.message);
         }
       }
     } else {
@@ -246,9 +244,18 @@ function Classes() {
             },
           });
           sendmail("class", data.teacher_id);
-          setTimeout(() => { navigate("/appointments") }, 3000);
+          setTimeout(() => {
+            navigate("/appointments");
+          }, 3000);
         } catch (error) {
-          toast.error(error.response.data.message)
+          toast.error(error.response.data.message, {
+            style: {
+              borderRadius: "10px",
+              background: "var(--background-color-dark)",
+              color: "var(--primary-color)",
+              textAlign: "center",
+            },
+          });
         }
       }
     }
@@ -303,7 +310,7 @@ function Classes() {
                       <option value="">Select</option>
                       {teachers.map((teacher, index) => (
                         <option value={teacher.user_id} key={index}>
-                          {teacher.user_name+" "+teacher.user_last_name}
+                          {teacher.user_name + " " + teacher.user_last_name}
                         </option>
                       ))}
                     </select>
