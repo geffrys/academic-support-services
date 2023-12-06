@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import useAvailability from "../Hooks/useAvailability";
 import AvailabilityInfo from "../components/Availabilityinfo";
 import NewAvailability from "../components/NewAvailability";
@@ -6,11 +7,10 @@ import { useAuth } from "../context/AuthContext";
 import "../css/Availability.css";
 
 function Availability() {
-  const { user } = useAuth();
-
-  const userId = user.id;
+  const user = useParams();
   const [isEdit, setEdit] = useState(false);
-  const userAvailability = useAvailability(userId, isEdit);
+  console.log("availability" + user.user_id);
+  const userAvailability = useAvailability(user.user_id, isEdit);
 
   return (
     <section className="availability">
@@ -24,7 +24,7 @@ function Availability() {
             <div className="availability_day">
               <p>Monday</p>
               <button
-              type="button"
+                type="button"
                 className="availabilityPrimary_btn"
                 onClick={() => {
                   isEdit === "Monday" ? setEdit(false) : setEdit("Monday");
@@ -39,7 +39,7 @@ function Availability() {
             />
             {isEdit === "Monday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -65,7 +65,7 @@ function Availability() {
             />
             {isEdit === "Tuesday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -94,7 +94,7 @@ function Availability() {
             />
             {isEdit === "Wednesday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -121,7 +121,7 @@ function Availability() {
             />
             {isEdit === "Thursday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -148,7 +148,7 @@ function Availability() {
             />
             {isEdit === "Friday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -175,7 +175,7 @@ function Availability() {
             />
             {isEdit === "Saturday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />
@@ -201,7 +201,7 @@ function Availability() {
             />
             {isEdit === "Sunday" ? (
               <NewAvailability
-                userId={userId}
+                userId={user.user_id}
                 isEdit={isEdit}
                 setEdit={setEdit}
               />

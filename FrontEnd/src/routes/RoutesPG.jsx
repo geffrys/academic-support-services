@@ -8,10 +8,11 @@ import Profile from "../pages/Profile";
 import Classes from "../pages/Classes";
 import Availability from "../pages/Availability";
 import Appintments from "../pages/Appointments";
+import Team from "../pages/Team";
 import LandingPage from "../pages/LandingPage";
 
 function RoutesPG() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   return (
     <Routes>
       <Route path="/" element={!isAuthenticated ? <LandingPage /> : <Home />} />
@@ -36,8 +37,32 @@ function RoutesPG() {
         element={isAuthenticated ? <Classes /> : <LogIn />}
       ></Route>
       <Route
-        path="/availability"
-        element={isAuthenticated ? <Availability /> : <LogIn />}
+        path="/availability/:user_id"
+        element={
+          isAuthenticated ? (
+            user.user_type !== 3 ? (
+              <Availability />
+            ) : (
+              <NotFound />
+            )
+          ) : (
+            <LogIn />
+          )
+        }
+      ></Route>
+      <Route
+        path="/team"
+        element={
+          isAuthenticated ? (
+            user.user_type === 1 ? (
+              <Team />
+            ) : (
+              <NotFound />
+            )
+          ) : (
+            <LogIn />
+          )
+        }
       ></Route>
     </Routes>
   );
