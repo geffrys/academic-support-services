@@ -37,6 +37,10 @@ export const enrollGroup = async (req, res) => {
         if (count[0]['COUNT(*)'] >= MAXGROUPSIZE) {
             throw new Error("Group is full");
         }
+        const [enrolled] = await pool.query("SELECT * FROM student_groups WHERE group_id = ? AND user_id = ?", [req.body.group_id, req.body.user_id]);
+        if(enrolled.length > 0) {
+            throw new Error("Already enrolled in group");
+        }
         const [result] = await pool.query("INSERT INTO student_groups (group_id, user_id) VALUES (?, ?)", [req.body.group_id, req.body.user_id]);
         
         res.status(200).json(result);
