@@ -303,7 +303,7 @@ function Classes() {
                       <option value="">Select</option>
                       {teachers.map((teacher, index) => (
                         <option value={teacher.user_id} key={index}>
-                          {teacher.user_name}
+                          {teacher.user_name+" "+teacher.user_last_name}
                         </option>
                       ))}
                     </select>
