@@ -118,9 +118,9 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
         <form onSubmit={onSubmitEdit}>
           <div className="availability_day_item">
             <div>
-              De :{" "}
+              From :{" "}
               <input type="time" {...register("availability_start_time")} />
-              Hasta :{" "}
+              To :{" "}
               <input type="time" {...register("availability_end_time")} />
             </div>
             <div>
@@ -142,7 +142,7 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
         availabilityList.map((item) => (
           <div key={item.availability_id} className="availability_day_item">
             <p>
-              De: {item.availability_start_time} - Hasta:{" "}
+              From: {item.availability_start_time} - To:{" "}
               {item.availability_end_time}
             </p>
             <div>
