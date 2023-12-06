@@ -10,6 +10,7 @@ import Availability from "../pages/Availability";
 import Appintments from "../pages/Appointments";
 import Team from "../pages/Team";
 import LandingPage from "../pages/LandingPage";
+import Groups from "../pages/Groups";
 
 function RoutesPG() {
   const { isAuthenticated, user } = useAuth();
@@ -31,6 +32,10 @@ function RoutesPG() {
       <Route
         path="/appointments"
         element={isAuthenticated ? <Appintments /> : <LogIn />}
+      ></Route>
+      <Route
+        path="/groups"
+        element={isAuthenticated ? <Groups /> : <LogIn />}
       ></Route>
       <Route
         path="/classes"

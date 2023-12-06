@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import "../css/Home.css"
 
 function Home() {
   const { user } = useAuth();
@@ -14,9 +15,11 @@ function Home() {
     });
   }, [user.user_name]);
   return (
-    <section>
-      <h1>HOME</h1>
+    <section className="home">
       <Toaster />
+      <h1 className="home__h1">Welcome to Academic Link</h1>
+      <p className="home__p">Please enjoy your session!</p>
+      <p className="home__p-s">Use the sidebar on the left to navigate through the page.</p>
     </section>
   );
 }
