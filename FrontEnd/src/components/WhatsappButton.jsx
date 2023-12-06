@@ -8,7 +8,7 @@ function WhatsappButton() {
     return (
         <>
             <div className="wpp-icon-container">
-                <a href={`https://wa.me/300664326?text=${message}`} target="_blank">
+                <a href={`https://wa.me/+573006664326?text=${message}`} target="_blank">
                     <img src={wppicon} alt="icono de whatsapp"/>
                 </a>
             </div>
