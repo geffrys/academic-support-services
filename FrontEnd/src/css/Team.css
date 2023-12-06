@@ -27,10 +27,10 @@
 }
 
 .team_content_container {
-  gap: 1rem;
+  gap: 5rem;
   display: flex;
   color: white;
-  font-size: 2.3rem;
+  font-size: 4rem;
   align-items: center;
   flex-direction: column;
 }
@@ -45,6 +45,7 @@
 
 .teacher_container {
   display: flex;
+  gap: 1rem;
   width: fit-content;
   text-align: center;
   align-items: center;
@@ -66,11 +67,28 @@
 }
 
 .teamSecundary_btn {
-    height: 4rem;
-    color: white;
-    font-size: 2rem;
-    padding: 1rem 1rem;
-    width: fit-content;
-    border-radius: 1rem;
-    background-color: var(--third-color);
+  height: 4rem;
+  color: white;
+  font-size: 2rem;
+  padding: 1rem 1rem;
+  width: fit-content;
+  border-radius: 1rem;
+  background-color: var(--third-color);
+}
+
+.form-team {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-team > select {
+  border-radius: 22px;
+  border: 2px solid #5cc59e;
+  background: #363a51;
+  color: white;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
 }

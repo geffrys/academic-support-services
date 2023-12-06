@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import useTeacherTeam from "../Hooks/useTeacherTeam";
-import "../css/Team.css";
-import { deleteTeacherTeam } from "../api/teacherTeam.api";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import useTeacherTeam from "../Hooks/useTeacherTeam";
+import { deleteTeacherTeam } from "../api/teacherTeam.api";
+import "../css/Team.css";
 
 function TeamInfo({ team_id, teachers }) {
   const [teachers_id, setTeachers_id] = useState(null);
@@ -11,7 +12,7 @@ function TeamInfo({ team_id, teachers }) {
   const onDelete = async (team_id, teacher_id) => {
     try {
       await deleteTeacherTeam(team_id, teacher_id);
-      toast.success("Availability deleted successfully", {
+      toast.success("Teacher deleted successfully from the team", {
         style: {
           borderRadius: "10px",
           background: "var(--background-color-dark)",
@@ -45,9 +46,11 @@ function TeamInfo({ team_id, teachers }) {
                   <h1>
                     {t.user_name} {t.user_last_name}
                   </h1>
-                  <button type="button" className="teamPrimary_btn">
-                    See Availability
-                  </button>
+                  <Link to={`/availability/${t.user_id}`}>
+                    <button type="button" className="teamPrimary_btn">
+                      See Availability
+                    </button>
+                  </Link>
                   <button
                     type="button"
                     className="teamSecundary_btn"

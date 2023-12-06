@@ -57,7 +57,7 @@ function Sidebar() {
           <li
             className="sidebar__li"
             onClick={() => {
-              navigate("/availability");
+              navigate(`/availability/${user.id}`);
             }}
           >
             Availability

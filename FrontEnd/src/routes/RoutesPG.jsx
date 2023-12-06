@@ -35,10 +35,10 @@ function RoutesPG() {
         element={isAuthenticated ? <Classes /> : <LogIn />}
       ></Route>
       <Route
-        path="/availability"
+        path="/availability/:user_id"
         element={
           isAuthenticated ? (
-            user.user_type === 2 ? (
+            user.user_type !== 3 ? (
               <Availability />
             ) : (
               <NotFound />

@@ -82,24 +82,26 @@ function Team() {
             </button>
           ) : (
             <form onSubmit={onSubmitEdit}>
-              <select name="" id="" {...register("teacher_id")}>
-                <option value="">Select</option>
-                {teachers.map((teacher, index) => (
-                  <option value={teacher.user_id} key={index}>
-                    {teacher.user_name}
-                  </option>
-                ))}
-              </select>
-              <button className="teamPrimary_btn" type="submit">
-                Submit
-              </button>
-              <button
-                className="teamSecundary_btn"
-                type="button"
-                onClick={() => setIsEdit(false)}
-              >
-                Cancel
-              </button>
+              <div className="form-team">
+                <select name="" id="" {...register("teacher_id")}>
+                  <option value="">Select</option>
+                  {teachers.map((teacher, index) => (
+                    <option value={teacher.user_id} key={index}>
+                      {teacher.user_name}
+                    </option>
+                  ))}
+                </select>
+                <button className="teamPrimary_btn" type="submit">
+                  Submit
+                </button>
+                <button
+                  className="teamSecundary_btn"
+                  type="button"
+                  onClick={() => setIsEdit(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           )}
         </section>
