@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-export const getTeachers = async (req, res) => {
+export const getTeachersTeam = async (req, res) => {
   try {
     const { team_id } = req.params;
     const [result] = await pool.query(
@@ -10,15 +10,15 @@ export const getTeachers = async (req, res) => {
     if (result.length > 0) {
       res.json(result).status(200);
     } else {
-      res.json({ message: "Teachers not found" }).status(404);
+      res.json({ message: "Teachers not found xd" }).status(404);
     }
   } catch (error) {
-    return res.send("pana no se que pasó XDD")
+    return res.send("pana no se que pasó XDD");
     // return res.status(500).json({ message: error.message });
   }
 };
 
-export const newTeacher = async (req, res) => {
+export const newTeacherTeam = async (req, res) => {
   try {
     const { team_id, teacher_id } = req.body;
 
@@ -33,7 +33,7 @@ export const newTeacher = async (req, res) => {
   }
 };
 
-export const deleteTeacher = async (req, res) => {
+export const deleteTeacherTeam = async (req, res) => {
   try {
     const { team_id, teacher_id } = req.params;
 

@@ -22,8 +22,7 @@ router.use("/singlegroup", singleGroup);
 router.use("/sessions", SessionRoutes);
 router.use("/topics", topicsRoutes);
 router.use("/availability", availabilityRoutes);
-router.use("/teams", teamRoutes);
-router.use("/teacherGroup", teacherTeam);
+router.use("/team", teamRoutes);
 
 
 export default router;
