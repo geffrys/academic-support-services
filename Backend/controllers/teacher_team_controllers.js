@@ -22,6 +22,15 @@ export const newTeacherTeam = async (req, res) => {
   try {
     const { team_id, teacher_id } = req.body;
 
+    const overlap = await pool.query(
+      "SELECT * FROM teacher_team WHERE team_id = ? AND teacher_id = ?",
+      [team_id, teacher_id]
+    );
+
+    if (overlap[0].length > 0) {
+      return res.status(400).json({ message: "Teacher already in the team" });
+    }
+
     await pool.query(
       "insert into teacher_team (team_id, teacher_id) values (?, ?) ",
       [team_id, teacher_id]
