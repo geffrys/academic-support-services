@@ -1,0 +1,183 @@
+.landing {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--background-color),
+    var(--background-color),
+    var(--background-color),
+    var(--background-color-dark),
+    var(--background-color),
+    var(--background-color)
+  );
+  height: 100vh;
+}
+
+.landing__nav {
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary-color),
+    var(--background-color)
+  );
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.landing__nav figure {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.landing__logo {
+  width: 6rem;
+}
+
+.landing__containter {
+  display: flex;
+  height: fit-content;
+}
+
+.landing__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 6rem;
+  width: fit-content;
+  max-height: 20rem;
+}
+
+.landing__h1 {
+  color: #fff;
+  font-size: 6rem;
+  text-shadow: 0.7rem 0.7rem 0.7rem var(--background-color-dark);
+  width: fit-content;
+  border-bottom: 0.2rem solid #fff;
+  margin-bottom: 4rem;
+  margin-left: 4rem;
+  transition: 2s;
+}
+
+.landing__h1:hover {
+  transition: 1s;
+  font-size: 6.5rem;
+  text-shadow: 0.2rem 0.2rem 0.4rem var(--primary-color);
+}
+
+.landing__p {
+  color: #fff;
+  font-size: 2rem;
+  transition: 2s;
+  max-width: 60%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-shadow: 0.6rem 0.6rem 0.7rem var(--background-color-dark);
+  border-top: 0.1rem solid var(--primary-color);
+  border-left: 0.1rem solid var(--primary-color);
+}
+
+.landing__p-m{
+  color: #fff;
+  font-size: 2rem;
+  transition: 2s;
+  max-width: 60%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-shadow: 0.6rem 0.6rem 0.7rem var(--background-color-dark);
+  border-bottom: 0.1rem solid var(--primary-color);
+  border-right: 0.1rem solid var(--primary-color);
+  box-shadow: 1rem 1rem 1rem var(--background-color-dark);
+}
+
+.landing__p:hover, .landing__p-m:hover {
+  transition: 1s;
+  font-size: 2.25rem;
+  text-shadow: 0.2rem 0.2rem 0.4rem var(--primary-color);
+  padding-left: 2rem;
+}
+
+figcaption {
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+.landing__carousel {
+  margin-top: 30rem;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100vw;
+}
+
+.landing__carousel:before,
+.landing__carousel:after {
+  position: absolute;
+  top: 0;
+  width: 20rem;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.landing__carousel:before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--background-color));
+}
+
+.landing__carousel:after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--background-color));
+}
+
+.carousel__container {
+  display: inline-block;
+  animation: 25s slide infinite linear;
+}
+
+.carousel__img {
+  width: 10rem;
+  padding: 1rem;
+  margin: 0 4rem;
+  transition: 1s;
+  animation: 4s bounce infinite;
+}
+
+.carousel__img:hover {
+  transition: 1s;
+  width: 11rem;
+  -webkit-filter: drop-shadow(5px 5px 5px #666666);
+  filter: drop-shadow(5px 5px 5px #666666);
+  cursor: pointer;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.6rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.carousel__img:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.carousel__img:nth-child(even) {
+  animation-delay: -0.1s;
+}

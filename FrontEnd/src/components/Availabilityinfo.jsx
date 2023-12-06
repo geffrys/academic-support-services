@@ -134,7 +134,7 @@ function AvailabilityInfo({ userAvailability, day, setEdit }) {
         availabilityList.map((item) => (
           <div key={item.availability_id} className="availability_day_item">
             <p>
-              De: {item.availability_start_time} - Hasta:{" "}
+              Start: {item.availability_start_time} - End:{" "}
               {item.availability_end_time}
             </p>
             <div>

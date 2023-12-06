@@ -9,7 +9,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const onClick = () => {
     logOut();
-    navigate("/");
+    navigate("/login");
   };
 
   const [userType, setUserType] = useState("");

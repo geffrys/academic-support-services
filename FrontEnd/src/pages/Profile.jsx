@@ -5,10 +5,10 @@ import { useAuth } from "../context/AuthContext";
 import "../css/Profile.css";
 import EditUser from "../components/EditUser";
 import UserProfileInfo from "../components/UserProfileInfo";
+import Invitation from '../components/Invitation'
 
 function Profile() {
   const { user } = useAuth();
-  // to avoid constantly refreshing propagated by useEffect hook in useAuth
   const userId = user.id;
   const [isEdit, setEdit] = useState(false);
   const userProfile = useUser(userId, isEdit);
@@ -40,10 +40,11 @@ function Profile() {
             )}
           </article>
         </section>
+        <section className="profile__undersection">
         <div className="profile__button">
           {!isEdit ? (
             <button
-              className="submit_button"
+              className="profile_button"
               onClick={() => {
                 setEdit(!isEdit);
               }}
@@ -54,6 +55,10 @@ function Profile() {
             ""
           )}
         </div>
+        <div>
+          <Invitation />
+        </div>
+        </section>
       </section>
     </section>
   );
