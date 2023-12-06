@@ -5,7 +5,6 @@ import "../css/Team.css";
 
 function TeamInfo({ team_id }) {
   const [teachers_id, setTeachers_id] = useState(null);
-  // console.log(team_id);
   const teacherTeam =  useTeacherTeam(team_id);
 
   useEffect(() => {
